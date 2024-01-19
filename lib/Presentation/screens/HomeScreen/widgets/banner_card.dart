@@ -12,7 +12,7 @@ class BackGroundCard extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 600,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: NetworkImage(
                     ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKLIVGd--e77jLu-nTIG7UX9oynJ_gl2p_2A&usqp=CAU'))),

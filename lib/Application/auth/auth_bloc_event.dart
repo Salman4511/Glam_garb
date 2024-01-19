@@ -11,4 +11,6 @@ class AuthBlocEvent with _$AuthBlocEvent {
 
   factory AuthBlocEvent.checkOtp(String recievedOtp)= _CheckOtp;
 
+  factory AuthBlocEvent.logOut()=_LogOut;
+
 }

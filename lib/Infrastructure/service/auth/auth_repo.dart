@@ -1,11 +1,36 @@
+
 import 'package:dio/dio.dart';
-import 'package:glam_garb/Domain/body_models/register_body_model/register_body_model.dart';
 import 'package:glam_garb/Domain/response_models/LoginModel/user_login/user_login.dart';
+import 'package:glam_garb/Domain/response_models/log_out/log_out_model.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/check_otp/check_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/send_otp/send_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/user_register/user_register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
+
+  static const String AUTH_ID_KEY = 'auth_id';
+
+  String? _authId;
+
+  Future<void> _saveAuthId(String authId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(AUTH_ID_KEY, authId);
+    _authId = authId;
+  }
+
+  Future<void> _loadAuthId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _authId = prefs.getString(AUTH_ID_KEY);
+  }
+
+ Future<void> clearAuthId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(
+        AUTH_ID_KEY);
+  }
+
+  
   Future<UserLogin> singIn(String email, String password) async {
     UserLogin logiUser = UserLogin(name: "");
     try {
@@ -13,7 +38,9 @@ class AuthRepo {
           data: <String, dynamic>{"email": email, "password": password});
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
-        return UserLogin.fromJson(response.data);
+        logiUser= UserLogin.fromJson(response.data);
+         await _saveAuthId(logiUser.id!);
+        return logiUser;
       } else {
         print("the response get is not oky");
         return logiUser;
@@ -22,6 +49,15 @@ class AuthRepo {
       print("the response get some error $e");
       return logiUser;
     }
+    
+  }
+
+    Future<bool> isAuthenticated() async {
+    if (_authId == null) {
+      // If authId is not loaded, load it from SharedPreferences
+      await _loadAuthId();
+    }
+    return _authId != null;
   }
 
   Future<UserRegister> signUp(String name , String email, int phone, String password )async{
@@ -29,14 +65,22 @@ class AuthRepo {
 
     try {
       final response = await Dio().post("http://10.0.2.2:3000/register",data: <String,dynamic>{"email":email,"name":name,"phone":phone,"password":password});
+      print('the status code returned is----->${response.statusCode}');
       if (response.statusCode==201||response.statusCode==200) {
         print('response okk on signupp--->>');
-        return UserRegister.fromJson(response.data);
+        regUser= UserRegister.fromJson(response.data);
+        await _saveAuthId(regUser.id!);
+        print('authid saved');
+        return regUser;
       }
      else if(response.statusCode==309){
       print('email is already used');
+      return UserRegister.fromJson(response.data);
       
      }
+     else {
+        print('Unexpected status code: ${response.statusCode}');
+      }
     } catch (e) {
       print('response get some error on signupp $e');
       
@@ -75,4 +119,22 @@ class AuthRepo {
    }
    return model;
   }
+
+  Future<LogoutModel> logOut() async {
+    LogoutModel model = LogoutModel(message: "");
+    try {
+      final response = await Dio().post("http://10.0.2.2:3000/logout",
+          );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('User logouted');
+        return LogoutModel.fromJson(response.data);
+      }
+    } catch (e) {
+      print('error occured on logout --> $e');
+    }
+    return model;
+  }
+
+  
+
 }

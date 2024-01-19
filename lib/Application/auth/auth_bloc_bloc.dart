@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:glam_garb/Domain/body_models/register_body_model/register_body_model.dart';
 import 'package:glam_garb/Domain/response_models/LoginModel/user_login/user_login.dart';
+import 'package:glam_garb/Domain/response_models/log_out/log_out_model.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/check_otp/check_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/send_otp/send_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/user_register/user_register.dart';
@@ -19,12 +19,16 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   on<_SignIn>((event, emit) async {
       final loginUser = await repo.singIn(event.email,event.password);
       emit(state.copyWith(loginUser:loginUser ,isLoading: false));
-    });
+
+      
+        });
   
   on<_SignUp>((event, emit)async {
     final userRegister= await repo.signUp(event.email,event.name,event.phone,event.password);
     emit(state.copyWith(user: userRegister));
-  });
+
+     
+      });
 
   on<_Otpverification>((event, emit)async{
     final otpVerify=await repo.sentOtp(event.email);
@@ -34,6 +38,11 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   on<_CheckOtp>((event, emit)async {
     final isValidOtp= await repo.checkOtp(event.recievedOtp);
     emit(state.copyWith(verifyOtp: isValidOtp));
+  });
+
+  on<_LogOut>((event, emit) async{
+    final logOut= await repo.logOut();
+    emit(state.copyWith(logout: logOut));
   });
   
   }

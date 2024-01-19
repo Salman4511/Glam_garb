@@ -23,4 +23,6 @@ BorderRadius kradius = BorderRadius.circular(10);
 BorderRadius kradius30 = BorderRadius.circular(30);
 
 TextStyle textstyle1 =
-    TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
+    TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
+    TextStyle textstyleblack =
+    TextStyle(color: Colors.black,fontWeight: FontWeight.w900,);

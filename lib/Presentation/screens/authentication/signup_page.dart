@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
-import 'package:glam_garb/Domain/body_models/register_body_model/register_body_model.dart';
-import 'package:glam_garb/Presentation/screens/NavBar/nav_bar.dart';
-import 'package:glam_garb/Presentation/screens/authentication/login_page.dart';
+import 'package:glam_garb/Presentation/screens/authentication/login_screen.dart';
 import 'package:glam_garb/Presentation/screens/authentication/otp_verification.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -393,6 +391,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // if (state.user != null) {
                             //   if (state.user!.name != "") {
                                 // if(state.verifyOtp!.message!=""){
+                                  
+                                    if(state.otp!.message=="Email sent successfully"){
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(
                                   builder: (context) {
@@ -400,6 +400,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     return OTPScreen(email: emailcontroller.text, name:name, phone:int.parse(phonecontroller.text), password: passwordcontroller.text,);
                                   },
                                 ));
+                                  
+                                  }
+                                  else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text("Email already Used"),
+                                      backgroundColor: Colors.redAccent));
+                                      
+                                  }
                               // } 
                               // else {
                               //   print('invalid otp');

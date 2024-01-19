@@ -8,7 +8,9 @@ class AuthBlocState with _$AuthBlocState {
       {required bool isLoading, UserRegister? user,
       UserLogin? loginUser,
       SendOtp? otp,
-      CheckOtpModel? verifyOtp
+      CheckOtpModel? verifyOtp,
+      LogoutModel? logout,
+      
        }) = _AuthBlocState;
 
   factory AuthBlocState.inital() {

@@ -124,12 +124,13 @@ class _OTPScreenState extends State<OTPScreen> {
                         Row(
                           children: [
                             Pinput(
+                              
                               length: 4,
                               controller: otpcontroller,
                               onChanged: (value) {
                                 // Code to execute when there is a change in the entered values
                               },
-                              validator: (value) => "Enter any input",
+                              
                             ),
                           ],
                         ),
@@ -153,29 +154,83 @@ class _OTPScreenState extends State<OTPScreen> {
                         alignment: Alignment.centerRight,
                         child: BlocConsumer<AuthBloc, AuthBlocState>(
                           listener: (context, state) {
-                            if (state.user != null) {
-                              if (state.user!.name != "") {
+                           
+                              
+                                if(state.verifyOtp!=null){
+                                  if(state.verifyOtp!.message!=""){
                                  Navigator.pushReplacement(context,
                                     MaterialPageRoute(
                                   builder: (context) {
                                     return navPage();
                                   },
                                 ));
-                          }
+                                }
+                                else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Enter valid Otp'),
+                                    backgroundColor: Colors.red,)
+                                  );
+                                }
+                          
+                              
                        }
-                            // TODO: implement listener
+                    //    if(state.user!=null&&state.verifyOtp!.message==""){
+                    //     showDialog(
+                    //             context: context,
+                    //             builder: (context) => AlertDialog(
+                    //                 title: Text('Error'),
+                    //                 content: Text('invalid otp and email'),
+                    //                 actions: <Widget>[
+                    //                   FloatingActionButton(
+                    //                     onPressed: () {
+                    //                       Navigator.pop(context);
+                    //                     },
+                    //                     child: Icon(Icons.close),
+                    //                   )
+                    //                 ]),
+                    //           );
+                    //    }
+                    //  else if (state.verifyOtp!.message=="") {
+                    //    showDialog(context: context, 
+                    //    builder:(context) => AlertDialog(
+                    //     title: Text('Error'),
+                    //     content:Text('invalid otp'),
+                    //     actions: <Widget>[
+                    //     FloatingActionButton(onPressed: (){
+                    //       Navigator.pop(context);
+                    //     },
+                    //     child: Icon(Icons.close),)
+                    //     ]
+                    //    ), );
+                    //  }
+                    //  else if(state.user!=null){
+                    //    showDialog(context: context, 
+                    //    builder:(context) => AlertDialog(
+                    //     title: Text('Error'),
+                    //     content:Text('email or phone is already used'),
+                    //     actions: <Widget>[
+                    //     FloatingActionButton(onPressed: (){
+                    //       Navigator.pop(context);
+                    //     },
+                    //     child: Icon(Icons.close),)
+                    //     ]
+                    //    ), );
+                    //  } 
                           },
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: () { 
                               
                                 if (otpcontroller.text.length == 4) {
-                                   context.read<AuthBloc>().add(
+                                context.read<AuthBloc>().add(
                                       AuthBlocEvent.checkOtp(
                                           otpcontroller.text));
-                                      context.read<AuthBloc>().add(
+                                          if(state.verifyOtp!.message!=""){
+                                            print('entered inside');
+                                            context.read<AuthBloc>().add(
                                         AuthBlocEvent.signUp(widget.name,widget.email,widget.phone,widget.password)); 
                                    
+                                          }
                                       
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -191,8 +246,8 @@ class _OTPScreenState extends State<OTPScreen> {
                                   borderRadius: BorderRadius.circular(30.0),
                                 ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
                                 child: SizedBox(
                                   height: 30,
                                   width: 80,
@@ -214,17 +269,17 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
               ),
               Positioned(
-                  top: 35,
+                  top: 50,
                   left: 15,
                   child: Row(
                     children: [
                       InkWell(
                           onTap: () => Navigator.pop(context),
-                          child: Icon(
+                          child: const Icon(
                             CupertinoIcons.back,
                             color: kwhite,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       //Text('Go Back',style: TextStyle(fontSize: 17,color: Colors.white54),),

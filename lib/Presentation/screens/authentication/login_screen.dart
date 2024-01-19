@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
-import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
 import 'package:glam_garb/Presentation/screens/NavBar/nav_bar.dart';
 import 'package:glam_garb/Presentation/screens/authentication/signup_page.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      
         body: Padding(
       padding: EdgeInsets.only(top: size.height * 0.09),
       child: SingleChildScrollView(
@@ -33,18 +34,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 EdgeInsets.only(left: 30, right: 30, top: size.height * 0.1),
             child: Column(
               children: [
-                // Lottie.asset('https://lottie.host/f5a4f76b-39f8-444c-8cff-08de7f5bb3dc/4rFiAMuwPu.json',
-                // repeat: true,
-                // reverse: true,
-                // height: 300,
-                // fit: BoxFit.cover
-                // ),
-                SizedBox(
-                  height: 150,
-                  width: 200,
-                  child: Image.network(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Y5YS7_OytcS_zErPHrL-M0U_GZbsChykXiWnzS0b_M9tjyLqwyKY6Ujom9hTANI_BzY&usqp=CAU'),
+                Lottie.network('https://lottie.host/a927e874-1e4f-4776-ba71-552d205e9714/galJVLi2L1.json',
+                repeat: true,
+                reverse: true,
+                height: 200,
+                fit: BoxFit.cover
                 ),
+                // SizedBox(
+                //   height: 150,
+                //   width: 200,
+                //   child: Image.network(
+                //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Y5YS7_OytcS_zErPHrL-M0U_GZbsChykXiWnzS0b_M9tjyLqwyKY6Ujom9hTANI_BzY&usqp=CAU'),
+                // ),
                 const SizedBox(
                   height: 40,
                 ),
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50)),
-                      fillColor: Colors.grey.shade900,
+                      fillColor: Colors.grey.shade900.withOpacity(0.5),
                       focusColor: Colors.white,
                       filled: true,
                     ),
@@ -102,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'Password',
                       hintStyle: const TextStyle(color: Colors.white),
                       filled: true,
-                      fillColor: Colors.grey.shade900,
+                      fillColor: Colors.grey.shade900.withOpacity(0.5),
                       focusColor: Colors.white,
                       suffixIcon: InkWell(
                         onTap: () {
@@ -121,13 +122,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     onEditingComplete: () {
                       FocusScope.of(context).unfocus();
                     }),
-                Row(
-                  children: [
-                    TextButton(
-                        onPressed: () {},
-                        child: const Text('forgot password?')),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     TextButton(
+                //         onPressed: () {
+                //           Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                   builder: (context) => navPage()));
+                //         },
+                //         child: const Text('forgot password?')),
+                //   ],
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: BlocConsumer<AuthBloc, AuthBlocState>(
@@ -140,6 +146,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ));
                         }
+                      }else {
+                         ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("Email or Password Does not Exist"),
+                                      backgroundColor: Colors.redAccent));
                       }
                     },
                     builder: (context, state) {

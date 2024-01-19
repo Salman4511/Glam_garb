@@ -10,50 +10,50 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dummyimg =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKLIVGd--e77jLu-nTIG7UX9oynJ_gl2p_2A&usqp=CAU';
+        'https://img.freepik.com/free-photo/fashionable-confident-woman-with-curly-hairs-posing-purple-wall-wearing-elegant-party-dress-spring-fashion-look-full-lenght_273443-3949.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1705017600&semt=ais';
     return Stack(
+      
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 7),
           width: width,
           height: 250,
           decoration: BoxDecoration(
-              borderRadius: kradius,
+              borderRadius: BorderRadius.circular(30),
               image: DecorationImage(
                   fit: BoxFit.cover, image: NetworkImage(dummyimg))),
-          child: const Align(
-              alignment: Alignment.topRight,
-              child: SizedBox(
-                  // height: 50,
-                  // width: 60,
-                  child: Icon(
-                Icons.favorite,
-                color: Colors.red,
-              ))),
+         
+        ),
+        const Positioned(
+          top: 8,
+          left: 150,
+          child: Icon(
+            Icons.favorite,
+            color: Colors.red,
+          ),
         ),
         Positioned(
           left: 8,
           top: 145,
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: Colors.black87),
+                borderRadius: BorderRadius.only(topRight:Radius.circular(30),
+                bottomRight: Radius.circular(30),
+                bottomLeft: Radius.circular(30)), color: Colors.white.withOpacity(0.8)),
             // color: Colors.amber,
-            width: 180,
-            
+            width: 80,
+            height: 50,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text(
-                    "  Dress",
-                    style: textstyle1,
-                  ),
+                 kheight,
                   Row(children: [
                     Text(
                       "  \$39",
                       style: textstyle1,
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(".99")
                   ])
                 ]),

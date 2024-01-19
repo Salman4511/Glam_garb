@@ -25,6 +25,7 @@ mixin _$AuthBlocEvent {
     required TResult Function(String email, String password) signIn,
     required TResult Function(String email) otpverification,
     required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +36,7 @@ mixin _$AuthBlocEvent {
     TResult? Function(String email, String password)? signIn,
     TResult? Function(String email)? otpverification,
     TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,6 +47,7 @@ mixin _$AuthBlocEvent {
     TResult Function(String email, String password)? signIn,
     TResult Function(String email)? otpverification,
     TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$AuthBlocEvent {
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_Otpverification value) otpverification,
     required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +68,7 @@ mixin _$AuthBlocEvent {
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Otpverification value)? otpverification,
     TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +78,7 @@ mixin _$AuthBlocEvent {
     TResult Function(_SignIn value)? signIn,
     TResult Function(_Otpverification value)? otpverification,
     TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,7 @@ class _$AuthBlocEventImpl implements _AuthBlocEvent {
     required TResult Function(String email, String password) signIn,
     required TResult Function(String email) otpverification,
     required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
   }) {
     return $default();
   }
@@ -154,6 +161,7 @@ class _$AuthBlocEventImpl implements _AuthBlocEvent {
     TResult? Function(String email, String password)? signIn,
     TResult? Function(String email)? otpverification,
     TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
   }) {
     return $default?.call();
   }
@@ -167,6 +175,7 @@ class _$AuthBlocEventImpl implements _AuthBlocEvent {
     TResult Function(String email, String password)? signIn,
     TResult Function(String email)? otpverification,
     TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -183,6 +192,7 @@ class _$AuthBlocEventImpl implements _AuthBlocEvent {
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_Otpverification value) otpverification,
     required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return $default(this);
   }
@@ -195,6 +205,7 @@ class _$AuthBlocEventImpl implements _AuthBlocEvent {
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Otpverification value)? otpverification,
     TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return $default?.call(this);
   }
@@ -207,6 +218,7 @@ class _$AuthBlocEventImpl implements _AuthBlocEvent {
     TResult Function(_SignIn value)? signIn,
     TResult Function(_Otpverification value)? otpverification,
     TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -316,6 +328,7 @@ class _$SignUpImpl implements _SignUp {
     required TResult Function(String email, String password) signIn,
     required TResult Function(String email) otpverification,
     required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
   }) {
     return signUp(email, name, phone, password);
   }
@@ -329,6 +342,7 @@ class _$SignUpImpl implements _SignUp {
     TResult? Function(String email, String password)? signIn,
     TResult? Function(String email)? otpverification,
     TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
   }) {
     return signUp?.call(email, name, phone, password);
   }
@@ -342,6 +356,7 @@ class _$SignUpImpl implements _SignUp {
     TResult Function(String email, String password)? signIn,
     TResult Function(String email)? otpverification,
     TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -358,6 +373,7 @@ class _$SignUpImpl implements _SignUp {
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_Otpverification value) otpverification,
     required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return signUp(this);
   }
@@ -370,6 +386,7 @@ class _$SignUpImpl implements _SignUp {
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Otpverification value)? otpverification,
     TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return signUp?.call(this);
   }
@@ -382,6 +399,7 @@ class _$SignUpImpl implements _SignUp {
     TResult Function(_SignIn value)? signIn,
     TResult Function(_Otpverification value)? otpverification,
     TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -484,6 +502,7 @@ class _$SignInImpl implements _SignIn {
     required TResult Function(String email, String password) signIn,
     required TResult Function(String email) otpverification,
     required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
   }) {
     return signIn(email, password);
   }
@@ -497,6 +516,7 @@ class _$SignInImpl implements _SignIn {
     TResult? Function(String email, String password)? signIn,
     TResult? Function(String email)? otpverification,
     TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
   }) {
     return signIn?.call(email, password);
   }
@@ -510,6 +530,7 @@ class _$SignInImpl implements _SignIn {
     TResult Function(String email, String password)? signIn,
     TResult Function(String email)? otpverification,
     TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -526,6 +547,7 @@ class _$SignInImpl implements _SignIn {
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_Otpverification value) otpverification,
     required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return signIn(this);
   }
@@ -538,6 +560,7 @@ class _$SignInImpl implements _SignIn {
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Otpverification value)? otpverification,
     TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return signIn?.call(this);
   }
@@ -550,6 +573,7 @@ class _$SignInImpl implements _SignIn {
     TResult Function(_SignIn value)? signIn,
     TResult Function(_Otpverification value)? otpverification,
     TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -641,6 +665,7 @@ class _$OtpverificationImpl implements _Otpverification {
     required TResult Function(String email, String password) signIn,
     required TResult Function(String email) otpverification,
     required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
   }) {
     return otpverification(email);
   }
@@ -654,6 +679,7 @@ class _$OtpverificationImpl implements _Otpverification {
     TResult? Function(String email, String password)? signIn,
     TResult? Function(String email)? otpverification,
     TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
   }) {
     return otpverification?.call(email);
   }
@@ -667,6 +693,7 @@ class _$OtpverificationImpl implements _Otpverification {
     TResult Function(String email, String password)? signIn,
     TResult Function(String email)? otpverification,
     TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (otpverification != null) {
@@ -683,6 +710,7 @@ class _$OtpverificationImpl implements _Otpverification {
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_Otpverification value) otpverification,
     required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return otpverification(this);
   }
@@ -695,6 +723,7 @@ class _$OtpverificationImpl implements _Otpverification {
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Otpverification value)? otpverification,
     TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return otpverification?.call(this);
   }
@@ -707,6 +736,7 @@ class _$OtpverificationImpl implements _Otpverification {
     TResult Function(_SignIn value)? signIn,
     TResult Function(_Otpverification value)? otpverification,
     TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (otpverification != null) {
@@ -797,6 +827,7 @@ class _$CheckOtpImpl implements _CheckOtp {
     required TResult Function(String email, String password) signIn,
     required TResult Function(String email) otpverification,
     required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
   }) {
     return checkOtp(recievedOtp);
   }
@@ -810,6 +841,7 @@ class _$CheckOtpImpl implements _CheckOtp {
     TResult? Function(String email, String password)? signIn,
     TResult? Function(String email)? otpverification,
     TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
   }) {
     return checkOtp?.call(recievedOtp);
   }
@@ -823,6 +855,7 @@ class _$CheckOtpImpl implements _CheckOtp {
     TResult Function(String email, String password)? signIn,
     TResult Function(String email)? otpverification,
     TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (checkOtp != null) {
@@ -839,6 +872,7 @@ class _$CheckOtpImpl implements _CheckOtp {
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_Otpverification value) otpverification,
     required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
   }) {
     return checkOtp(this);
   }
@@ -851,6 +885,7 @@ class _$CheckOtpImpl implements _CheckOtp {
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_Otpverification value)? otpverification,
     TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
   }) {
     return checkOtp?.call(this);
   }
@@ -863,6 +898,7 @@ class _$CheckOtpImpl implements _CheckOtp {
     TResult Function(_SignIn value)? signIn,
     TResult Function(_Otpverification value)? otpverification,
     TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (checkOtp != null) {
@@ -882,12 +918,143 @@ abstract class _CheckOtp implements AuthBlocEvent {
 }
 
 /// @nodoc
+abstract class _$$LogOutImplCopyWith<$Res> {
+  factory _$$LogOutImplCopyWith(
+          _$LogOutImpl value, $Res Function(_$LogOutImpl) then) =
+      __$$LogOutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogOutImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$LogOutImpl>
+    implements _$$LogOutImplCopyWith<$Res> {
+  __$$LogOutImplCopyWithImpl(
+      _$LogOutImpl _value, $Res Function(_$LogOutImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LogOutImpl implements _LogOut {
+  _$LogOutImpl();
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.logOut()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogOutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(
+            String email, String name, int phone, String password)
+        signUp,
+    required TResult Function(String email, String password) signIn,
+    required TResult Function(String email) otpverification,
+    required TResult Function(String recievedOtp) checkOtp,
+    required TResult Function() logOut,
+  }) {
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(String email, String name, int phone, String password)?
+        signUp,
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function(String email)? otpverification,
+    TResult? Function(String recievedOtp)? checkOtp,
+    TResult? Function()? logOut,
+  }) {
+    return logOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String email, String name, int phone, String password)?
+        signUp,
+    TResult Function(String email, String password)? signIn,
+    TResult Function(String email)? otpverification,
+    TResult Function(String recievedOtp)? checkOtp,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AuthBlocEvent value) $default, {
+    required TResult Function(_SignUp value) signUp,
+    required TResult Function(_SignIn value) signIn,
+    required TResult Function(_Otpverification value) otpverification,
+    required TResult Function(_CheckOtp value) checkOtp,
+    required TResult Function(_LogOut value) logOut,
+  }) {
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AuthBlocEvent value)? $default, {
+    TResult? Function(_SignUp value)? signUp,
+    TResult? Function(_SignIn value)? signIn,
+    TResult? Function(_Otpverification value)? otpverification,
+    TResult? Function(_CheckOtp value)? checkOtp,
+    TResult? Function(_LogOut value)? logOut,
+  }) {
+    return logOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AuthBlocEvent value)? $default, {
+    TResult Function(_SignUp value)? signUp,
+    TResult Function(_SignIn value)? signIn,
+    TResult Function(_Otpverification value)? otpverification,
+    TResult Function(_CheckOtp value)? checkOtp,
+    TResult Function(_LogOut value)? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogOut implements AuthBlocEvent {
+  factory _LogOut() = _$LogOutImpl;
+}
+
+/// @nodoc
 mixin _$AuthBlocState {
   bool get isLoading => throw _privateConstructorUsedError;
   UserRegister? get user => throw _privateConstructorUsedError;
   UserLogin? get loginUser => throw _privateConstructorUsedError;
   SendOtp? get otp => throw _privateConstructorUsedError;
   CheckOtpModel? get verifyOtp => throw _privateConstructorUsedError;
+  LogoutModel? get logout => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthBlocStateCopyWith<AuthBlocState> get copyWith =>
@@ -905,7 +1072,8 @@ abstract class $AuthBlocStateCopyWith<$Res> {
       UserRegister? user,
       UserLogin? loginUser,
       SendOtp? otp,
-      CheckOtpModel? verifyOtp});
+      CheckOtpModel? verifyOtp,
+      LogoutModel? logout});
 }
 
 /// @nodoc
@@ -926,6 +1094,7 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
     Object? loginUser = freezed,
     Object? otp = freezed,
     Object? verifyOtp = freezed,
+    Object? logout = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -948,6 +1117,10 @@ class _$AuthBlocStateCopyWithImpl<$Res, $Val extends AuthBlocState>
           ? _value.verifyOtp
           : verifyOtp // ignore: cast_nullable_to_non_nullable
               as CheckOtpModel?,
+      logout: freezed == logout
+          ? _value.logout
+          : logout // ignore: cast_nullable_to_non_nullable
+              as LogoutModel?,
     ) as $Val);
   }
 }
@@ -965,7 +1138,8 @@ abstract class _$$AuthBlocStateImplCopyWith<$Res>
       UserRegister? user,
       UserLogin? loginUser,
       SendOtp? otp,
-      CheckOtpModel? verifyOtp});
+      CheckOtpModel? verifyOtp,
+      LogoutModel? logout});
 }
 
 /// @nodoc
@@ -984,6 +1158,7 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
     Object? loginUser = freezed,
     Object? otp = freezed,
     Object? verifyOtp = freezed,
+    Object? logout = freezed,
   }) {
     return _then(_$AuthBlocStateImpl(
       isLoading: null == isLoading
@@ -1006,6 +1181,10 @@ class __$$AuthBlocStateImplCopyWithImpl<$Res>
           ? _value.verifyOtp
           : verifyOtp // ignore: cast_nullable_to_non_nullable
               as CheckOtpModel?,
+      logout: freezed == logout
+          ? _value.logout
+          : logout // ignore: cast_nullable_to_non_nullable
+              as LogoutModel?,
     ));
   }
 }
@@ -1018,7 +1197,8 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
       this.user,
       this.loginUser,
       this.otp,
-      this.verifyOtp});
+      this.verifyOtp,
+      this.logout});
 
   @override
   final bool isLoading;
@@ -1030,10 +1210,12 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
   final SendOtp? otp;
   @override
   final CheckOtpModel? verifyOtp;
+  @override
+  final LogoutModel? logout;
 
   @override
   String toString() {
-    return 'AuthBlocState(isLoading: $isLoading, user: $user, loginUser: $loginUser, otp: $otp, verifyOtp: $verifyOtp)';
+    return 'AuthBlocState(isLoading: $isLoading, user: $user, loginUser: $loginUser, otp: $otp, verifyOtp: $verifyOtp, logout: $logout)';
   }
 
   @override
@@ -1048,12 +1230,13 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
                 other.loginUser == loginUser) &&
             (identical(other.otp, otp) || other.otp == otp) &&
             (identical(other.verifyOtp, verifyOtp) ||
-                other.verifyOtp == verifyOtp));
+                other.verifyOtp == verifyOtp) &&
+            (identical(other.logout, logout) || other.logout == logout));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, user, loginUser, otp, verifyOtp);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, user, loginUser, otp, verifyOtp, logout);
 
   @JsonKey(ignore: true)
   @override
@@ -1068,7 +1251,8 @@ abstract class _AuthBlocState implements AuthBlocState {
       final UserRegister? user,
       final UserLogin? loginUser,
       final SendOtp? otp,
-      final CheckOtpModel? verifyOtp}) = _$AuthBlocStateImpl;
+      final CheckOtpModel? verifyOtp,
+      final LogoutModel? logout}) = _$AuthBlocStateImpl;
 
   @override
   bool get isLoading;
@@ -1080,6 +1264,8 @@ abstract class _AuthBlocState implements AuthBlocState {
   SendOtp? get otp;
   @override
   CheckOtpModel? get verifyOtp;
+  @override
+  LogoutModel? get logout;
   @override
   @JsonKey(ignore: true)
   _$$AuthBlocStateImplCopyWith<_$AuthBlocStateImpl> get copyWith =>

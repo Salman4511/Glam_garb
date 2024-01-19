@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:glam_garb/Presentation/screens/HomeScreen/home_screen.dart';
+import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
+import 'package:glam_garb/Presentation/screens/NavBar/nav_bar.dart';
 import 'dart:async';
 
-import 'package:glam_garb/Presentation/screens/authentication/login_page.dart';
+import 'package:glam_garb/Presentation/screens/authentication/login_screen.dart';
 
 class splashscreen extends StatefulWidget {
-  const splashscreen({super.key});
+  const splashscreen({super.key,});
 
   @override
   State<splashscreen> createState() => _splashscreenState();
@@ -14,16 +15,27 @@ class splashscreen extends StatefulWidget {
 class _splashscreenState extends State<splashscreen> {
   int _start = 5;
   late Timer _timer;
+   late final AuthRepo repo;
 
   @override
   void initState() {
     super.initState();
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+   repo = AuthRepo();
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer)async {
       if (_start == 0) {
         timer.cancel();
+        // Navigator.of(context).pushReplacement(
+        //   MaterialPageRoute(builder: (context) => const LoginScreen()),
+        // );
+            bool isAuthenticated = await repo.isAuthenticated();
+
+        // Navigate to the appropriate screen based on authentication status
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
+          MaterialPageRoute(
+            builder: (context) => isAuthenticated
+                ?  navPage() // Replace with your actual HomeScreen widget
+                : const LoginScreen(),
+          ),
         );
       } else {
         setState(() {
