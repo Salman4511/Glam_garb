@@ -6,7 +6,9 @@ import 'dart:async';
 import 'package:glam_garb/Presentation/screens/authentication/login_screen.dart';
 
 class splashscreen extends StatefulWidget {
-  const splashscreen({super.key,});
+  const splashscreen({
+    super.key,
+  });
 
   @override
   State<splashscreen> createState() => _splashscreenState();
@@ -15,25 +17,25 @@ class splashscreen extends StatefulWidget {
 class _splashscreenState extends State<splashscreen> {
   int _start = 5;
   late Timer _timer;
-   late final AuthRepo repo;
+  late final AuthRepo repo;
 
   @override
   void initState() {
     super.initState();
-   repo = AuthRepo();
-    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer)async {
+    repo = AuthRepo();
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
       if (_start == 0) {
         timer.cancel();
         // Navigator.of(context).pushReplacement(
         //   MaterialPageRoute(builder: (context) => const LoginScreen()),
         // );
-            bool isAuthenticated = await repo.isAuthenticated();
+        bool isAuthenticated = await repo.isAuthenticated();
 
         // Navigate to the appropriate screen based on authentication status
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => isAuthenticated
-                ?  navPage() // Replace with your actual HomeScreen widget
+                ? navPage() // Replace with your actual HomeScreen widget
                 : const LoginScreen(),
           ),
         );

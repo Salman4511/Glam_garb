@@ -23,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      
         body: Padding(
       padding: EdgeInsets.only(top: size.height * 0.09),
       child: SingleChildScrollView(
@@ -34,12 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 EdgeInsets.only(left: 30, right: 30, top: size.height * 0.1),
             child: Column(
               children: [
-                Lottie.network('https://lottie.host/a927e874-1e4f-4776-ba71-552d205e9714/galJVLi2L1.json',
-                repeat: true,
-                reverse: true,
-                height: 200,
-                fit: BoxFit.cover
-                ),
+                Lottie.network(
+                    'https://lottie.host/a927e874-1e4f-4776-ba71-552d205e9714/galJVLi2L1.json',
+                    repeat: true,
+                    reverse: true,
+                    height: 200,
+                    fit: BoxFit.cover),
                 // SizedBox(
                 //   height: 150,
                 //   width: 200,
@@ -146,10 +145,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ));
                         }
-                      }else {
-                         ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text("Email or Password Does not Exist"),
-                                      backgroundColor: Colors.redAccent));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text("Email or Password Does not Exist"),
+                                backgroundColor: Colors.redAccent));
                       }
                     },
                     builder: (context, state) {

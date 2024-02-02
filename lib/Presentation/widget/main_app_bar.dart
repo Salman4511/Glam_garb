@@ -12,10 +12,10 @@ class Main_app_bar extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Main_app_barState extends State<Main_app_bar> {
-
   void _openDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -42,10 +42,9 @@ class _Main_app_barState extends State<Main_app_bar> {
                 image: DecorationImage(
                     image: AssetImage('assets/images/7543183.png'))),
           ),
-          onTap: (){
-           _openDrawer(context);
+          onTap: () {
+            _openDrawer(context);
           },
-          
         ),
         // BlocConsumer<AuthBloc, AuthBlocState>(
         //   listener: (context, state) {
@@ -70,7 +69,6 @@ class _Main_app_barState extends State<Main_app_bar> {
         // ),
       ],
     );
-  
   }
 }
 
@@ -88,7 +86,6 @@ class CustomDrawer extends StatelessWidget {
           child: MenuWidget(),
         ),
       ),
-      );
-    
+    );
   }
 }

@@ -10,9 +10,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dummyimg =
-        'https://img.freepik.com/free-photo/fashionable-confident-woman-with-curly-hairs-posing-purple-wall-wearing-elegant-party-dress-spring-fashion-look-full-lenght_273443-3949.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1705017600&semt=ais';
+        '12446893.1705017600&semt=aishttps://img.freepik.com/free-photo/fashionable-confident-woman-with-curly-hairs-posing-purple-wall-wearing-elegant-party-dress-spring-fashion-look-full-lenght_273443-3949.jpg?size=626&ext=jpg&ga=GA1.1.14';
     return Stack(
-      
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 7),
@@ -22,7 +21,6 @@ class ProductCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               image: DecorationImage(
                   fit: BoxFit.cover, image: NetworkImage(dummyimg))),
-         
         ),
         const Positioned(
           top: 8,
@@ -37,9 +35,11 @@ class ProductCard extends StatelessWidget {
           top: 145,
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topRight:Radius.circular(30),
-                bottomRight: Radius.circular(30),
-                bottomLeft: Radius.circular(30)), color: Colors.white.withOpacity(0.8)),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30)),
+                color: Colors.white.withOpacity(0.8)),
             // color: Colors.amber,
             width: 80,
             height: 50,
@@ -47,7 +47,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                 kheight,
+                  kheight,
                   Row(children: [
                     Text(
                       "  \$39",

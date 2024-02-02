@@ -384,83 +384,85 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     //       FocusScope.of(context).unfocus();
                     //     }),
                     Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: BlocConsumer<AuthBloc, AuthBlocState>(
-                        listener: (ctx, state) {
-                          // if(state.verifyOtp!=null){
+                        padding: const EdgeInsets.only(top: 50),
+                        child: BlocConsumer<AuthBloc, AuthBlocState>(
+                          listener: (ctx, state) {
+                            // if(state.verifyOtp!=null){
                             // if (state.user != null) {
                             //   if (state.user!.name != "") {
-                                // if(state.verifyOtp!.message!=""){
-                                  
-                                    if(state.otp!.message=="Email sent successfully"){
-                                Navigator.pushReplacement(context,
-                                    MaterialPageRoute(
-                                  builder: (context) {
-                                     var name=firstnamecontroller.text+lastnamecontroller.text;
-                                    return OTPScreen(email: emailcontroller.text, name:name, phone:int.parse(phonecontroller.text), password: passwordcontroller.text,);
-                                  },
-                                ));
-                                  
-                                  }
-                                  else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Email already Used"),
+                            // if(state.verifyOtp!.message!=""){
+
+                            if (state.otp!.message ==
+                                "Email sent successfully") {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                builder: (context) {
+                                  var name = firstnamecontroller.text +
+                                      lastnamecontroller.text;
+                                  return OTPScreen(
+                                    email: emailcontroller.text,
+                                    name: name,
+                                    phone: int.parse(phonecontroller.text),
+                                    password: passwordcontroller.text,
+                                  );
+                                },
+                              ));
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("Email already Used"),
                                       backgroundColor: Colors.redAccent));
-                                      
-                                  }
-                              // } 
-                              // else {
-                              //   print('invalid otp');
-                              // }
-                             
-                              // }
-                              
-                        //     }
-                           
-                        // },
-                        },
-                        builder: (context, state) {
-                          return ElevatedButton.icon(
-                          onPressed: () {
-                            //  UserPassModel user = UserPassModel(
-                            //   email: emailcontroller.text,
-                            //   name: firstnamecontroller.text + lastnamecontroller.text,
-                            //   phone:int.parse(phonecontroller.text),
-                            //   password: passwordcontroller.text
-                            //  );
-                            //  print(user.name);
-                            //  print(user.phone.runtimeType);
-                            //  print(user.password);
-                            //  print(user.email);
-                            if (formkey.currentState!.validate()) {
-                              //  context.read<AuthBloc>().add(
-                              //       AuthBlocEvent.signUp(name,emailcontroller.text,int.parse(phonecontroller.text),passwordcontroller.text));
-                                    // if(state.user!=null){
-                                    //   if(state.user!.name!=""){
-                                        context.read<AuthBloc>().add(
-                                          AuthBlocEvent.otpverification(
-                                              emailcontroller.text));
-                                    //   }
-                                    // }
-                               
-                                    }
-                            
+                            }
+                            // }
+                            // else {
+                            //   print('invalid otp');
+                            // }
+
+                            // }
+
+                            //     }
+
+                            // },
                           },
-                          icon: const Icon(
-                            Icons.check_circle_outline_outlined,
-                            color: Colors.white,
-                          ),
-                          label: const Text(
-                            'Submit',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Colors.grey.shade900)),
-                        );
-                        },
-                      )
-                    ),
+                          builder: (context, state) {
+                            return ElevatedButton.icon(
+                              onPressed: () {
+                                //  UserPassModel user = UserPassModel(
+                                //   email: emailcontroller.text,
+                                //   name: firstnamecontroller.text + lastnamecontroller.text,
+                                //   phone:int.parse(phonecontroller.text),
+                                //   password: passwordcontroller.text
+                                //  );
+                                //  print(user.name);
+                                //  print(user.phone.runtimeType);
+                                //  print(user.password);
+                                //  print(user.email);
+                                if (formkey.currentState!.validate()) {
+                                  //  context.read<AuthBloc>().add(
+                                  //       AuthBlocEvent.signUp(name,emailcontroller.text,int.parse(phonecontroller.text),passwordcontroller.text));
+                                  // if(state.user!=null){
+                                  //   if(state.user!.name!=""){
+                                  context.read<AuthBloc>().add(
+                                      AuthBlocEvent.otpverification(
+                                          emailcontroller.text));
+                                  //   }
+                                  // }
+                                }
+                              },
+                              icon: const Icon(
+                                Icons.check_circle_outline_outlined,
+                                color: Colors.white,
+                              ),
+                              label: const Text(
+                                'Submit',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Colors.grey.shade900)),
+                            );
+                          },
+                        )),
                     Padding(
                       padding: EdgeInsets.only(left: size.width * 0.15, top: 0),
                       child: Row(

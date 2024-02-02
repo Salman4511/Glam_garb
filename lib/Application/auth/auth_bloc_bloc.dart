@@ -9,41 +9,36 @@ import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc_bloc.freezed.dart';
 
-
 part 'auth_bloc_event.dart';
 part 'auth_bloc_state.dart';
 
 class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   final AuthRepo repo;
   AuthBloc(this.repo) : super(AuthBlocState.inital()) {
-  on<_SignIn>((event, emit) async {
-      final loginUser = await repo.singIn(event.email,event.password);
-      emit(state.copyWith(loginUser:loginUser ,isLoading: false));
+    on<_SignIn>((event, emit) async {
+      final loginUser = await repo.singIn(event.email, event.password);
+      emit(state.copyWith(loginUser: loginUser, isLoading: false));
+    });
 
-      
-        });
-  
-  on<_SignUp>((event, emit)async {
-    final userRegister= await repo.signUp(event.email,event.name,event.phone,event.password);
-    emit(state.copyWith(user: userRegister));
+    on<_SignUp>((event, emit) async {
+      final userRegister = await repo.signUp(
+          event.email, event.name, event.phone, event.password);
+      emit(state.copyWith(user: userRegister));
+    });
 
-     
-      });
+    on<_Otpverification>((event, emit) async {
+      final otpVerify = await repo.sentOtp(event.email);
+      emit(state.copyWith(otp: otpVerify));
+    });
 
-  on<_Otpverification>((event, emit)async{
-    final otpVerify=await repo.sentOtp(event.email);
-    emit(state.copyWith(otp: otpVerify));
-  });
-  
-  on<_CheckOtp>((event, emit)async {
-    final isValidOtp= await repo.checkOtp(event.recievedOtp);
-    emit(state.copyWith(verifyOtp: isValidOtp));
-  });
+    on<_CheckOtp>((event, emit) async {
+      final isValidOtp = await repo.checkOtp(event.recievedOtp);
+      emit(state.copyWith(verifyOtp: isValidOtp));
+    });
 
-  on<_LogOut>((event, emit) async{
-    final logOut= await repo.logOut();
-    emit(state.copyWith(logout: logOut));
-  });
-  
+    on<_LogOut>((event, emit) async {
+      final logOut = await repo.logOut();
+      emit(state.copyWith(logout: logOut));
+    });
   }
 }

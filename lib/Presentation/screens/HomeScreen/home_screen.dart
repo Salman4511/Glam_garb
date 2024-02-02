@@ -18,7 +18,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final AuthRepo repo = AuthRepo();
-  DrawerController drawerController =DrawerController(child: MenuWidget(), alignment:DrawerAlignment.end);
+  DrawerController drawerController =
+      DrawerController(child: MenuWidget(), alignment: DrawerAlignment.end);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,28 +67,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 10,
               ),
               GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 20, crossAxisCount: 2),
-                itemCount: 20,
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap:(){
-                     Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const ProductDetails()),
-                        );
-                  } ,
-                  child: const Expanded(child: ProductCard(width: 180)))
-              )
-
-           
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 20, crossAxisCount: 2),
+                  itemCount: 20,
+                  itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const ProductDetails()),
+                        // );
+                      },
+                      child: ProductCard(width: 180)))
             ],
           ),
         ]),
       ])),
-     drawer: const CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }
-

@@ -12,7 +12,10 @@ import 'package:flutter/material.dart';
 class OTPScreen extends StatefulWidget {
   const OTPScreen({
     super.key,
-    required this.email, required this.name, required this.phone, required this.password,
+    required this.email,
+    required this.name,
+    required this.phone,
+    required this.password,
   });
   final String email;
   final String name;
@@ -124,13 +127,11 @@ class _OTPScreenState extends State<OTPScreen> {
                         Row(
                           children: [
                             Pinput(
-                              
                               length: 4,
                               controller: otpcontroller,
                               onChanged: (value) {
                                 // Code to execute when there is a change in the entered values
                               },
-                              
                             ),
                           ],
                         ),
@@ -154,84 +155,81 @@ class _OTPScreenState extends State<OTPScreen> {
                         alignment: Alignment.centerRight,
                         child: BlocConsumer<AuthBloc, AuthBlocState>(
                           listener: (context, state) {
-                           
-                              
-                                if(state.verifyOtp!=null){
-                                  if(state.verifyOtp!.message!=""){
-                                 Navigator.pushReplacement(context,
+                            if (state.verifyOtp != null) {
+                              if (state.verifyOtp!.message != "") {
+                                Navigator.pushReplacement(context,
                                     MaterialPageRoute(
                                   builder: (context) {
                                     return navPage();
                                   },
                                 ));
-                                }
-                                else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Enter valid Otp'),
-                                    backgroundColor: Colors.red,)
-                                  );
-                                }
-                          
-                              
-                       }
-                    //    if(state.user!=null&&state.verifyOtp!.message==""){
-                    //     showDialog(
-                    //             context: context,
-                    //             builder: (context) => AlertDialog(
-                    //                 title: Text('Error'),
-                    //                 content: Text('invalid otp and email'),
-                    //                 actions: <Widget>[
-                    //                   FloatingActionButton(
-                    //                     onPressed: () {
-                    //                       Navigator.pop(context);
-                    //                     },
-                    //                     child: Icon(Icons.close),
-                    //                   )
-                    //                 ]),
-                    //           );
-                    //    }
-                    //  else if (state.verifyOtp!.message=="") {
-                    //    showDialog(context: context, 
-                    //    builder:(context) => AlertDialog(
-                    //     title: Text('Error'),
-                    //     content:Text('invalid otp'),
-                    //     actions: <Widget>[
-                    //     FloatingActionButton(onPressed: (){
-                    //       Navigator.pop(context);
-                    //     },
-                    //     child: Icon(Icons.close),)
-                    //     ]
-                    //    ), );
-                    //  }
-                    //  else if(state.user!=null){
-                    //    showDialog(context: context, 
-                    //    builder:(context) => AlertDialog(
-                    //     title: Text('Error'),
-                    //     content:Text('email or phone is already used'),
-                    //     actions: <Widget>[
-                    //     FloatingActionButton(onPressed: (){
-                    //       Navigator.pop(context);
-                    //     },
-                    //     child: Icon(Icons.close),)
-                    //     ]
-                    //    ), );
-                    //  } 
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('Enter valid Otp'),
+                                  backgroundColor: Colors.red,
+                                ));
+                              }
+                            }
+                            //    if(state.user!=null&&state.verifyOtp!.message==""){
+                            //     showDialog(
+                            //             context: context,
+                            //             builder: (context) => AlertDialog(
+                            //                 title: Text('Error'),
+                            //                 content: Text('invalid otp and email'),
+                            //                 actions: <Widget>[
+                            //                   FloatingActionButton(
+                            //                     onPressed: () {
+                            //                       Navigator.pop(context);
+                            //                     },
+                            //                     child: Icon(Icons.close),
+                            //                   )
+                            //                 ]),
+                            //           );
+                            //    }
+                            //  else if (state.verifyOtp!.message=="") {
+                            //    showDialog(context: context,
+                            //    builder:(context) => AlertDialog(
+                            //     title: Text('Error'),
+                            //     content:Text('invalid otp'),
+                            //     actions: <Widget>[
+                            //     FloatingActionButton(onPressed: (){
+                            //       Navigator.pop(context);
+                            //     },
+                            //     child: Icon(Icons.close),)
+                            //     ]
+                            //    ), );
+                            //  }
+                            //  else if(state.user!=null){
+                            //    showDialog(context: context,
+                            //    builder:(context) => AlertDialog(
+                            //     title: Text('Error'),
+                            //     content:Text('email or phone is already used'),
+                            //     actions: <Widget>[
+                            //     FloatingActionButton(onPressed: (){
+                            //       Navigator.pop(context);
+                            //     },
+                            //     child: Icon(Icons.close),)
+                            //     ]
+                            //    ), );
+                            //  }
                           },
                           builder: (context, state) {
                             return ElevatedButton(
-                              onPressed: () { 
-                              
+                              onPressed: () {
                                 if (otpcontroller.text.length == 4) {
-                                context.read<AuthBloc>().add(
+                                  context.read<AuthBloc>().add(
                                       AuthBlocEvent.checkOtp(
                                           otpcontroller.text));
-                                          if(state.verifyOtp!.message!=""){
-                                            print('entered inside');
-                                            context.read<AuthBloc>().add(
-                                        AuthBlocEvent.signUp(widget.name,widget.email,widget.phone,widget.password)); 
-                                   
-                                          }
-                                      
+                                  if (state.verifyOtp!.message != "") {
+                                    print('entered inside');
+                                    context.read<AuthBloc>().add(
+                                        AuthBlocEvent.signUp(
+                                            widget.name,
+                                            widget.email,
+                                            widget.phone,
+                                            widget.password));
+                                  }
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(

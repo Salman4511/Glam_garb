@@ -27,7 +27,7 @@ class MenuWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               Text(
-              'User',
+                'User',
                 style: TextStyle(fontSize: 20),
               )
             ],
@@ -51,8 +51,9 @@ class MenuWidget extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        OutlinedButton(onPressed: (){
-           showDialog(
+        OutlinedButton(
+          onPressed: () {
+            showDialog(
               context: context,
               builder: (context) {
                 return AlertDialog(
@@ -70,7 +71,8 @@ class MenuWidget extends StatelessWidget {
                         if (state.logout!.message != "") {
                           repo.clearAuthId();
                           Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()),
                             (route) => false,
                           );
                         }
@@ -78,25 +80,29 @@ class MenuWidget extends StatelessWidget {
                       builder: (context, state) {
                         return TextButton(
                           onPressed: () {
-                            context.read<AuthBloc>().add(AuthBlocEvent.logOut());
+                            context
+                                .read<AuthBloc>()
+                                .add(AuthBlocEvent.logOut());
                           },
                           child: const Text(
                             'Logout',
-                            
                           ),
-                          
                         );
                       },
                     ),
-
                   ],
                 );
               },
             );
-        }, child: Text('Logout',style: TextStyle(color: Colors.white,fontSize: 18),),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.red.shade500),
-        ),
+          },
+          child: Text(
+            'Logout',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.red.shade500),
+          ),
         ),
         // BlocConsumer<AuthBloc, AuthBlocState>(
         //   listener: (context, state) {

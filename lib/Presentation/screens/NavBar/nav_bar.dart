@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:glam_garb/Presentation/screens/HomeScreen/home_screen.dart';
+import 'package:glam_garb/Presentation/screens/cart/cart_screen.dart';
 import 'package:glam_garb/Presentation/screens/category/category_screen.dart';
+import 'package:glam_garb/Presentation/screens/profile/profile_screen.dart';
+import 'package:glam_garb/Presentation/screens/wishlist/wishlist_screen.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
 class navPage extends StatefulWidget {
@@ -20,9 +23,9 @@ class _navPageState extends State<navPage> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const CategoryScreen(),
-    // const kennelPage(),
-    // const eventScreen(),
-    // const MenuScreen(), // Replace with your actual page widget
+    const ProfileScreen(),
+    const WishList(),
+    const CartScreen(),
   ];
   @override
   void initState() {
