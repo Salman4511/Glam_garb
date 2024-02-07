@@ -5,11 +5,11 @@ import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_get_mo
 import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_to_bag_model/wish_list_to_bag_model.dart';
 
 class WishListRepo {
+  static const String _jwt = "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNzMxNTk1MiwiZXhwIjoxNzA3NTc1MTUyfQ.PDFb6nReyTGfcLG7b228AT6Ey0OElv3s3_fKIXe94Hw";
   Future<WishListAddModel> addToWishList(String id) async {
     try {
       final dio = Dio(BaseOptions(headers: {
-        'Cookie':
-            'connect.sid=s%3A300JH90wbeC-vmRk5HSJG_owgYKDqg3V.ilOA9v7K0E0wFt9f5z77iX7qkdWKDdxI6hgTMo2XWLI; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNjc3NjYwOCwiZXhwIjoxNzA3MDM1ODA4fQ.Js_kSuXcQbB71qsLyfxX79duw2PUaGBJCx2StdtiNbw'
+        'Cookie':_jwt
       }));
 
       final response = await dio.post("http://10.0.2.2:3000/wishlist-add",
@@ -30,8 +30,7 @@ class WishListRepo {
   Future<WishListGetModel> getWishList() async {
     try {
       final dio = Dio(BaseOptions(headers: {
-        'Cookie':
-            'connect.sid=s%3A300JH90wbeC-vmRk5HSJG_owgYKDqg3V.ilOA9v7K0E0wFt9f5z77iX7qkdWKDdxI6hgTMo2XWLI; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNjc3NjYwOCwiZXhwIjoxNzA3MDM1ODA4fQ.Js_kSuXcQbB71qsLyfxX79duw2PUaGBJCx2StdtiNbw'
+        'Cookie':_jwt
       }));
 
       final response = await dio.get(
@@ -53,8 +52,7 @@ class WishListRepo {
   Future<WishlistDeleteModel> deleteFromWishList(String id) async {
     try {
       final dio = Dio(BaseOptions(headers: {
-        'Cookie':
-            'connect.sid=s%3A300JH90wbeC-vmRk5HSJG_owgYKDqg3V.ilOA9v7K0E0wFt9f5z77iX7qkdWKDdxI6hgTMo2XWLI; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNjc3NjYwOCwiZXhwIjoxNzA3MDM1ODA4fQ.Js_kSuXcQbB71qsLyfxX79duw2PUaGBJCx2StdtiNbw'
+        'Cookie':_jwt
       }));
 
       final response = await dio.get(
@@ -76,8 +74,7 @@ class WishListRepo {
   Future<WishlistToCartModel> addToCart(String id) async {
     try {
       final dio = Dio(BaseOptions(headers: {
-        'Cookie':
-            'connect.sid=s%3A300JH90wbeC-vmRk5HSJG_owgYKDqg3V.ilOA9v7K0E0wFt9f5z77iX7qkdWKDdxI6hgTMo2XWLI; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNjc3NjYwOCwiZXhwIjoxNzA3MDM1ODA4fQ.Js_kSuXcQbB71qsLyfxX79duw2PUaGBJCx2StdtiNbw'
+        'Cookie':_jwt
       }));
 
       final response = await dio.get(

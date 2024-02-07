@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/wishlist/wishlist_bloc.dart';
-import 'package:glam_garb/Presentation/screens/cart/widgets/cart_item_widget.dart';
 import 'package:glam_garb/Shared/constants/constants.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 

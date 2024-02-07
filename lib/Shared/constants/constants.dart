@@ -34,3 +34,14 @@ TextStyle textstyle3 =
 
 TextStyle textstyle4 =
     TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold);
+
+TextStyle textstyleWhite = TextStyle(color: Colors.white);
+
+// buttonStyle
+
+ButtonStyle kbuttonStylered = ButtonStyle(
+    backgroundColor:
+        MaterialStatePropertyAll(const Color.fromARGB(255, 255, 111, 100)));
+
+ButtonStyle kbuttonStyleorange =
+    ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.orange));

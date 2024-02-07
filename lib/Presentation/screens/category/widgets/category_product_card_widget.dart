@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/wishlist/wishlist_bloc.dart';
-import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_add_model/wishlist.dart';
 import 'package:glam_garb/Shared/constants/constants.dart';
 
 class ProductCardWidget extends StatefulWidget {
@@ -9,6 +8,7 @@ class ProductCardWidget extends StatefulWidget {
   final String imgurl;
   final String id;
   final String productName;
+  final String productId;
   const ProductCardWidget({
     super.key,
     required this.width,
@@ -16,6 +16,7 @@ class ProductCardWidget extends StatefulWidget {
     required this.imgurl,
     required this.id,
     required this.productName,
+    required this.productId,
   });
   final double width;
 
@@ -74,9 +75,15 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   setState(() {
                     isFavorited = !isFavorited;
                   });
-                  context
-                      .read<WishlistBloc>()
-                      .add(WishlistEvent.addFavorite(widget.id));
+                  if (isFavorited == true) {
+                    context
+                        .read<WishlistBloc>()
+                        .add(WishlistEvent.addFavorite(widget.id));
+                  } else {
+                    context
+                        .read<WishlistBloc>()
+                        .add(WishlistEvent.deleteFavorite(widget.productId));
+                  }
                   print(widget.id);
                 },
                 child: Icon(
@@ -92,7 +99,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
           top: 140,
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                     bottomLeft: Radius.circular(30)),

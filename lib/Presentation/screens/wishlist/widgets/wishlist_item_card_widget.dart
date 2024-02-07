@@ -1,9 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/wishlist/wishlist_bloc.dart';
 import 'package:glam_garb/Shared/constants/constants.dart';
 
-class WishListCard extends StatelessWidget {
+class WishListCard extends StatefulWidget {
   final String imageUrl;
   final String productName;
   final String productDescription;
@@ -26,6 +27,11 @@ class WishListCard extends StatelessWidget {
   });
 
   @override
+  State<WishListCard> createState() => _WishListCardState();
+}
+
+class _WishListCardState extends State<WishListCard> {
+  @override
   Widget build(BuildContext context) {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
     return Card(
@@ -36,13 +42,14 @@ class WishListCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Left side - Image Container
+
             Container(
               width: 100,
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                  image: NetworkImage(baseUrl + imageUrl),
+                  image: NetworkImage(baseUrl + widget.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,23 +62,23 @@ class WishListCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Product Name
-                    Text(productName, style: textstyle1),
+                    Text(widget.productName, style: textstyle1),
                     // Product Description
                     Text(
-                      productDescription,
+                      widget.productDescription,
                       style: TextStyle(fontSize: 16),
                       overflow: TextOverflow.ellipsis,
                     ),
                     // Product Size
                     Text(
-                      'Status: $active',
+                      'Status: ${widget.active}',
                       style: TextStyle(
                           fontSize: 16,
-                          color: active ? Colors.green : Colors.red,
+                          color: widget.active ? Colors.green : Colors.red,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Prize: ₹$price',
+                      'Prize: ₹${widget.price}',
                       style:
                           TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     ),
@@ -97,14 +104,16 @@ class WishListCard extends StatelessWidget {
                         child: BlocConsumer<WishlistBloc, WishlistState>(
                           listener: (context, state) {
                             // TODO: implement listener
+                            if (state.wishlistToCart != null) {
+                              if (state.wishlistToCart!.message == "") {}
+                            }
                           },
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: () {
-                                context
-                                    .read<WishlistBloc>()
-                                    .add(WishlistEvent.favToCart(productId));
-                                print(productId);
+                                context.read<WishlistBloc>().add(
+                                    WishlistEvent.favToCart(widget.productId));
+                                print(widget.productId);
                               },
                               child: Text(
                                 'Add to Cart',
@@ -123,14 +132,17 @@ class WishListCard extends StatelessWidget {
             BlocConsumer<WishlistBloc, WishlistState>(
               listener: (context, state) {
                 // TODO: implement listener
+                if (state.deleteWishlist != null) {
+                  if (state.deleteWishlist!.mesage ==
+                      "Product Successfully deleted from wishlist!") {}
+                }
               },
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () {
                     context
                         .read<WishlistBloc>()
-                        .add(WishlistEvent.deleteFavorite(id));
-                    print(id);
+                        .add(WishlistEvent.deleteFavorite(widget.id));
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),

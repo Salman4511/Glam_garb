@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:glam_garb/Domain/response_models/category_model/category_model.dart';
 import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
+import 'package:glam_garb/Infrastructure/service/category/category_repo.dart';
 import 'package:glam_garb/Presentation/screens/HomeScreen/widgets/main_card.dart';
-import 'package:glam_garb/Presentation/screens/HomeScreen/widgets/product_card.dart';
+import 'package:glam_garb/Presentation/screens/category/widgets/category_product_card_widget.dart';
 import 'package:glam_garb/Presentation/screens/product/product_details_page.dart';
 import 'package:glam_garb/Presentation/widget/menu_widget.dart';
 import 'package:glam_garb/Presentation/widget/main_app_bar.dart';
+import 'package:glam_garb/Shared/constants/constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -22,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       DrawerController(child: MenuWidget(), alignment: DrawerAlignment.end);
   @override
   Widget build(BuildContext context) {
+    CategoryRepo repo = CategoryRepo();
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -66,20 +70,59 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10,
               ),
+              FutureBuilder<CategoryModel>(
+      future: repo.getAllProducts('', [], [],[],[]),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else if (!snapshot.hasData || snapshot.data?.products == null) {
+          return const Text('No products found.');
+        } else {
+          final products = snapshot.data!;
+          return Column(
+            children: [
+              kheight,
               GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 20, crossAxisCount: 2),
-                  itemCount: 20,
-                  itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //       builder: (context) => const ProductDetails()),
-                        // );
-                      },
-                      child: ProductCard(width: 180)))
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 20,
+                  crossAxisCount: 2,
+                ),
+                itemCount: products.products!.length,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetails(
+                          title: products.products![index].productName ?? '',
+                          descr: products.products![index].description ?? '',
+                          price: products.products![index].salePrice!,
+                          imgurl: products.products![index].images ?? [],
+                          id: products.products![index].id ?? '',
+                        ),
+                      ),
+                    );
+                  },
+                  child: ProductCardWidget(
+                    width: 180,
+                    // Pass necessary data to ProductCard widget
+                    id: products.products![index].id ?? '',
+                    imgurl: products.products![index].images![0].url ?? '',
+                    salePrice: products.products![index].salePrice!,
+                    productName: products.products![index].productName ?? '',
+                    productId: '',
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+      },
+    )
             ],
           ),
         ]),

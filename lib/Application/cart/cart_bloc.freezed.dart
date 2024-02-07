@@ -21,6 +21,8 @@ mixin _$CartEvent {
     TResult Function() $default, {
     required TResult Function(String id, dynamic operation, String size)
         updateCartQuantity,
+    required TResult Function(String id) deleteCartItem,
+    required TResult Function(String id) cartToWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$CartEvent {
     TResult? Function()? $default, {
     TResult? Function(String id, dynamic operation, String size)?
         updateCartQuantity,
+    TResult? Function(String id)? deleteCartItem,
+    TResult? Function(String id)? cartToWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$CartEvent {
     TResult Function()? $default, {
     TResult Function(String id, dynamic operation, String size)?
         updateCartQuantity,
+    TResult Function(String id)? deleteCartItem,
+    TResult Function(String id)? cartToWishlist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,18 +48,24 @@ mixin _$CartEvent {
   TResult map<TResult extends Object?>(
     TResult Function(_CartEvent value) $default, {
     required TResult Function(_UpdateCartQuantity value) updateCartQuantity,
+    required TResult Function(_DeleteCartItem value) deleteCartItem,
+    required TResult Function(_CartToWishlist value) cartToWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CartEvent value)? $default, {
     TResult? Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult? Function(_DeleteCartItem value)? deleteCartItem,
+    TResult? Function(_CartToWishlist value)? cartToWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CartEvent value)? $default, {
     TResult Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult Function(_DeleteCartItem value)? deleteCartItem,
+    TResult Function(_CartToWishlist value)? cartToWishlist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +129,8 @@ class _$CartEventImpl implements _CartEvent {
     TResult Function() $default, {
     required TResult Function(String id, dynamic operation, String size)
         updateCartQuantity,
+    required TResult Function(String id) deleteCartItem,
+    required TResult Function(String id) cartToWishlist,
   }) {
     return $default();
   }
@@ -127,6 +141,8 @@ class _$CartEventImpl implements _CartEvent {
     TResult? Function()? $default, {
     TResult? Function(String id, dynamic operation, String size)?
         updateCartQuantity,
+    TResult? Function(String id)? deleteCartItem,
+    TResult? Function(String id)? cartToWishlist,
   }) {
     return $default?.call();
   }
@@ -137,6 +153,8 @@ class _$CartEventImpl implements _CartEvent {
     TResult Function()? $default, {
     TResult Function(String id, dynamic operation, String size)?
         updateCartQuantity,
+    TResult Function(String id)? deleteCartItem,
+    TResult Function(String id)? cartToWishlist,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -150,6 +168,8 @@ class _$CartEventImpl implements _CartEvent {
   TResult map<TResult extends Object?>(
     TResult Function(_CartEvent value) $default, {
     required TResult Function(_UpdateCartQuantity value) updateCartQuantity,
+    required TResult Function(_DeleteCartItem value) deleteCartItem,
+    required TResult Function(_CartToWishlist value) cartToWishlist,
   }) {
     return $default(this);
   }
@@ -159,6 +179,8 @@ class _$CartEventImpl implements _CartEvent {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CartEvent value)? $default, {
     TResult? Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult? Function(_DeleteCartItem value)? deleteCartItem,
+    TResult? Function(_CartToWishlist value)? cartToWishlist,
   }) {
     return $default?.call(this);
   }
@@ -168,6 +190,8 @@ class _$CartEventImpl implements _CartEvent {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CartEvent value)? $default, {
     TResult Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult Function(_DeleteCartItem value)? deleteCartItem,
+    TResult Function(_CartToWishlist value)? cartToWishlist,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -266,6 +290,8 @@ class _$UpdateCartQuantityImpl implements _UpdateCartQuantity {
     TResult Function() $default, {
     required TResult Function(String id, dynamic operation, String size)
         updateCartQuantity,
+    required TResult Function(String id) deleteCartItem,
+    required TResult Function(String id) cartToWishlist,
   }) {
     return updateCartQuantity(id, operation, size);
   }
@@ -276,6 +302,8 @@ class _$UpdateCartQuantityImpl implements _UpdateCartQuantity {
     TResult? Function()? $default, {
     TResult? Function(String id, dynamic operation, String size)?
         updateCartQuantity,
+    TResult? Function(String id)? deleteCartItem,
+    TResult? Function(String id)? cartToWishlist,
   }) {
     return updateCartQuantity?.call(id, operation, size);
   }
@@ -286,6 +314,8 @@ class _$UpdateCartQuantityImpl implements _UpdateCartQuantity {
     TResult Function()? $default, {
     TResult Function(String id, dynamic operation, String size)?
         updateCartQuantity,
+    TResult Function(String id)? deleteCartItem,
+    TResult Function(String id)? cartToWishlist,
     required TResult orElse(),
   }) {
     if (updateCartQuantity != null) {
@@ -299,6 +329,8 @@ class _$UpdateCartQuantityImpl implements _UpdateCartQuantity {
   TResult map<TResult extends Object?>(
     TResult Function(_CartEvent value) $default, {
     required TResult Function(_UpdateCartQuantity value) updateCartQuantity,
+    required TResult Function(_DeleteCartItem value) deleteCartItem,
+    required TResult Function(_CartToWishlist value) cartToWishlist,
   }) {
     return updateCartQuantity(this);
   }
@@ -308,6 +340,8 @@ class _$UpdateCartQuantityImpl implements _UpdateCartQuantity {
   TResult? mapOrNull<TResult extends Object?>(
     TResult? Function(_CartEvent value)? $default, {
     TResult? Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult? Function(_DeleteCartItem value)? deleteCartItem,
+    TResult? Function(_CartToWishlist value)? cartToWishlist,
   }) {
     return updateCartQuantity?.call(this);
   }
@@ -317,6 +351,8 @@ class _$UpdateCartQuantityImpl implements _UpdateCartQuantity {
   TResult maybeMap<TResult extends Object?>(
     TResult Function(_CartEvent value)? $default, {
     TResult Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult Function(_DeleteCartItem value)? deleteCartItem,
+    TResult Function(_CartToWishlist value)? cartToWishlist,
     required TResult orElse(),
   }) {
     if (updateCartQuantity != null) {
@@ -340,9 +376,309 @@ abstract class _UpdateCartQuantity implements CartEvent {
 }
 
 /// @nodoc
+abstract class _$$DeleteCartItemImplCopyWith<$Res> {
+  factory _$$DeleteCartItemImplCopyWith(_$DeleteCartItemImpl value,
+          $Res Function(_$DeleteCartItemImpl) then) =
+      __$$DeleteCartItemImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeleteCartItemImplCopyWithImpl<$Res>
+    extends _$CartEventCopyWithImpl<$Res, _$DeleteCartItemImpl>
+    implements _$$DeleteCartItemImplCopyWith<$Res> {
+  __$$DeleteCartItemImplCopyWithImpl(
+      _$DeleteCartItemImpl _value, $Res Function(_$DeleteCartItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteCartItemImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCartItemImpl implements _DeleteCartItem {
+  _$DeleteCartItemImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'CartEvent.deleteCartItem(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteCartItemImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteCartItemImplCopyWith<_$DeleteCartItemImpl> get copyWith =>
+      __$$DeleteCartItemImplCopyWithImpl<_$DeleteCartItemImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(String id, dynamic operation, String size)
+        updateCartQuantity,
+    required TResult Function(String id) deleteCartItem,
+    required TResult Function(String id) cartToWishlist,
+  }) {
+    return deleteCartItem(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(String id, dynamic operation, String size)?
+        updateCartQuantity,
+    TResult? Function(String id)? deleteCartItem,
+    TResult? Function(String id)? cartToWishlist,
+  }) {
+    return deleteCartItem?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String id, dynamic operation, String size)?
+        updateCartQuantity,
+    TResult Function(String id)? deleteCartItem,
+    TResult Function(String id)? cartToWishlist,
+    required TResult orElse(),
+  }) {
+    if (deleteCartItem != null) {
+      return deleteCartItem(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CartEvent value) $default, {
+    required TResult Function(_UpdateCartQuantity value) updateCartQuantity,
+    required TResult Function(_DeleteCartItem value) deleteCartItem,
+    required TResult Function(_CartToWishlist value) cartToWishlist,
+  }) {
+    return deleteCartItem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CartEvent value)? $default, {
+    TResult? Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult? Function(_DeleteCartItem value)? deleteCartItem,
+    TResult? Function(_CartToWishlist value)? cartToWishlist,
+  }) {
+    return deleteCartItem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CartEvent value)? $default, {
+    TResult Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult Function(_DeleteCartItem value)? deleteCartItem,
+    TResult Function(_CartToWishlist value)? cartToWishlist,
+    required TResult orElse(),
+  }) {
+    if (deleteCartItem != null) {
+      return deleteCartItem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteCartItem implements CartEvent {
+  factory _DeleteCartItem(final String id) = _$DeleteCartItemImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DeleteCartItemImplCopyWith<_$DeleteCartItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CartToWishlistImplCopyWith<$Res> {
+  factory _$$CartToWishlistImplCopyWith(_$CartToWishlistImpl value,
+          $Res Function(_$CartToWishlistImpl) then) =
+      __$$CartToWishlistImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$CartToWishlistImplCopyWithImpl<$Res>
+    extends _$CartEventCopyWithImpl<$Res, _$CartToWishlistImpl>
+    implements _$$CartToWishlistImplCopyWith<$Res> {
+  __$$CartToWishlistImplCopyWithImpl(
+      _$CartToWishlistImpl _value, $Res Function(_$CartToWishlistImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$CartToWishlistImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CartToWishlistImpl implements _CartToWishlist {
+  _$CartToWishlistImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'CartEvent.cartToWishlist(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CartToWishlistImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CartToWishlistImplCopyWith<_$CartToWishlistImpl> get copyWith =>
+      __$$CartToWishlistImplCopyWithImpl<_$CartToWishlistImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(String id, dynamic operation, String size)
+        updateCartQuantity,
+    required TResult Function(String id) deleteCartItem,
+    required TResult Function(String id) cartToWishlist,
+  }) {
+    return cartToWishlist(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(String id, dynamic operation, String size)?
+        updateCartQuantity,
+    TResult? Function(String id)? deleteCartItem,
+    TResult? Function(String id)? cartToWishlist,
+  }) {
+    return cartToWishlist?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String id, dynamic operation, String size)?
+        updateCartQuantity,
+    TResult Function(String id)? deleteCartItem,
+    TResult Function(String id)? cartToWishlist,
+    required TResult orElse(),
+  }) {
+    if (cartToWishlist != null) {
+      return cartToWishlist(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CartEvent value) $default, {
+    required TResult Function(_UpdateCartQuantity value) updateCartQuantity,
+    required TResult Function(_DeleteCartItem value) deleteCartItem,
+    required TResult Function(_CartToWishlist value) cartToWishlist,
+  }) {
+    return cartToWishlist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CartEvent value)? $default, {
+    TResult? Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult? Function(_DeleteCartItem value)? deleteCartItem,
+    TResult? Function(_CartToWishlist value)? cartToWishlist,
+  }) {
+    return cartToWishlist?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CartEvent value)? $default, {
+    TResult Function(_UpdateCartQuantity value)? updateCartQuantity,
+    TResult Function(_DeleteCartItem value)? deleteCartItem,
+    TResult Function(_CartToWishlist value)? cartToWishlist,
+    required TResult orElse(),
+  }) {
+    if (cartToWishlist != null) {
+      return cartToWishlist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CartToWishlist implements CartEvent {
+  factory _CartToWishlist(final String id) = _$CartToWishlistImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$CartToWishlistImplCopyWith<_$CartToWishlistImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CartState {
   bool get isloading => throw _privateConstructorUsedError;
   CartEditQuantityModel? get updateCart => throw _privateConstructorUsedError;
+  CartDeleteModel? get delCart => throw _privateConstructorUsedError;
+  CartToWishListModel? get cartToWishlist => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartStateCopyWith<CartState> get copyWith =>
@@ -354,7 +690,11 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({bool isloading, CartEditQuantityModel? updateCart});
+  $Res call(
+      {bool isloading,
+      CartEditQuantityModel? updateCart,
+      CartDeleteModel? delCart,
+      CartToWishListModel? cartToWishlist});
 }
 
 /// @nodoc
@@ -372,6 +712,8 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
   $Res call({
     Object? isloading = null,
     Object? updateCart = freezed,
+    Object? delCart = freezed,
+    Object? cartToWishlist = freezed,
   }) {
     return _then(_value.copyWith(
       isloading: null == isloading
@@ -382,6 +724,14 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
           ? _value.updateCart
           : updateCart // ignore: cast_nullable_to_non_nullable
               as CartEditQuantityModel?,
+      delCart: freezed == delCart
+          ? _value.delCart
+          : delCart // ignore: cast_nullable_to_non_nullable
+              as CartDeleteModel?,
+      cartToWishlist: freezed == cartToWishlist
+          ? _value.cartToWishlist
+          : cartToWishlist // ignore: cast_nullable_to_non_nullable
+              as CartToWishListModel?,
     ) as $Val);
   }
 }
@@ -394,7 +744,11 @@ abstract class _$$CartStateImplCopyWith<$Res>
       __$$CartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isloading, CartEditQuantityModel? updateCart});
+  $Res call(
+      {bool isloading,
+      CartEditQuantityModel? updateCart,
+      CartDeleteModel? delCart,
+      CartToWishListModel? cartToWishlist});
 }
 
 /// @nodoc
@@ -410,6 +764,8 @@ class __$$CartStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isloading = null,
     Object? updateCart = freezed,
+    Object? delCart = freezed,
+    Object? cartToWishlist = freezed,
   }) {
     return _then(_$CartStateImpl(
       isloading: null == isloading
@@ -420,6 +776,14 @@ class __$$CartStateImplCopyWithImpl<$Res>
           ? _value.updateCart
           : updateCart // ignore: cast_nullable_to_non_nullable
               as CartEditQuantityModel?,
+      delCart: freezed == delCart
+          ? _value.delCart
+          : delCart // ignore: cast_nullable_to_non_nullable
+              as CartDeleteModel?,
+      cartToWishlist: freezed == cartToWishlist
+          ? _value.cartToWishlist
+          : cartToWishlist // ignore: cast_nullable_to_non_nullable
+              as CartToWishListModel?,
     ));
   }
 }
@@ -427,16 +791,24 @@ class __$$CartStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CartStateImpl implements _CartState {
-  const _$CartStateImpl({required this.isloading, this.updateCart});
+  const _$CartStateImpl(
+      {required this.isloading,
+      this.updateCart,
+      this.delCart,
+      this.cartToWishlist});
 
   @override
   final bool isloading;
   @override
   final CartEditQuantityModel? updateCart;
+  @override
+  final CartDeleteModel? delCart;
+  @override
+  final CartToWishListModel? cartToWishlist;
 
   @override
   String toString() {
-    return 'CartState(isloading: $isloading, updateCart: $updateCart)';
+    return 'CartState(isloading: $isloading, updateCart: $updateCart, delCart: $delCart, cartToWishlist: $cartToWishlist)';
   }
 
   @override
@@ -447,11 +819,15 @@ class _$CartStateImpl implements _CartState {
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
             (identical(other.updateCart, updateCart) ||
-                other.updateCart == updateCart));
+                other.updateCart == updateCart) &&
+            (identical(other.delCart, delCart) || other.delCart == delCart) &&
+            (identical(other.cartToWishlist, cartToWishlist) ||
+                other.cartToWishlist == cartToWishlist));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, updateCart);
+  int get hashCode =>
+      Object.hash(runtimeType, isloading, updateCart, delCart, cartToWishlist);
 
   @JsonKey(ignore: true)
   @override
@@ -463,12 +839,18 @@ class _$CartStateImpl implements _CartState {
 abstract class _CartState implements CartState {
   const factory _CartState(
       {required final bool isloading,
-      final CartEditQuantityModel? updateCart}) = _$CartStateImpl;
+      final CartEditQuantityModel? updateCart,
+      final CartDeleteModel? delCart,
+      final CartToWishListModel? cartToWishlist}) = _$CartStateImpl;
 
   @override
   bool get isloading;
   @override
   CartEditQuantityModel? get updateCart;
+  @override
+  CartDeleteModel? get delCart;
+  @override
+  CartToWishListModel? get cartToWishlist;
   @override
   @JsonKey(ignore: true)
   _$$CartStateImplCopyWith<_$CartStateImpl> get copyWith =>

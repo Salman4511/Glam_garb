@@ -4,7 +4,9 @@ part of 'cart_bloc.dart';
 class CartState with _$CartState {
   const factory CartState({
     required bool isloading,
-   CartEditQuantityModel? updateCart,
+    CartEditQuantityModel? updateCart,
+    CartDeleteModel? delCart,
+    CartToWishListModel? cartToWishlist,
   }) = _CartState;
 
   factory CartState.inital() {
