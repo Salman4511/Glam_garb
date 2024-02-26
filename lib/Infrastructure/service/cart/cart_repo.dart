@@ -3,37 +3,41 @@ import 'package:glam_garb/Domain/response_models/cart_model/cart_delete_model/ca
 import 'package:glam_garb/Domain/response_models/cart_model/cart_edit_model/cart_update_quantity_model.dart';
 import 'package:glam_garb/Domain/response_models/cart_model/cart_get_model/cart_get_model.dart';
 import 'package:glam_garb/Domain/response_models/cart_model/cart_to_wishlist_model/cart_to_wishlist_model.dart';
+import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
+import 'package:glam_garb/domain/response_models/check_out_model/check_out_model/check_out_model.dart';
 
 class CartRepo {
-    static const String _jwt = "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNzMxNTk1MiwiZXhwIjoxNzA3NTc1MTUyfQ.PDFb6nReyTGfcLG7b228AT6Ey0OElv3s3_fKIXe94Hw";
-  Future<String> getCookie() async {
-    final response = await Dio().get("http://10.0.2.2:3000/cart");
-    return response.headers.map['jwt']
-        .toString()
-        .split(' ')
-        .first
-        .split('[')
-        .last;
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  CartRepo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwt=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
   }
 
   Future<CartGetModel> getCart() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+
+    print('jwt------->$_jwt');
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
       final response = await dio.get(
         "http://10.0.2.2:3000/cart",
       );
 
       if (response.statusCode == 200) {
-        print(response.headers.map['jwt']
-            .toString()
-            .split(' ')
-            .first
-            .split('[')
-            .last);
-        print(response.headers);
         print('response ok');
+        print('jwt---------${_jwt}');
         return CartGetModel.fromJson(response.data);
       } else {
         throw Exception("Failed to get cart");
@@ -45,10 +49,11 @@ class CartRepo {
 
   Future<CartEditQuantityModel> updateCartQuantity(
       String id, dynamic operation, String size) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.post(
           "http://10.0.2.2:3000/cart/updateQuantity",
@@ -71,10 +76,11 @@ class CartRepo {
   }
 
   Future<CartDeleteModel> deleteFromCart(String id) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
         "http://10.0.2.2:3000/cart/deleteItem?itemId=$id",
@@ -93,10 +99,11 @@ class CartRepo {
   }
 
   Future<CartToWishListModel> cartToWishlist(String id) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
           "http://10.0.2.2:3000/cart/toWishlist?itemId=$id",
@@ -108,6 +115,34 @@ class CartRepo {
         return CartToWishListModel.fromJson(response.data);
       } else {
         throw Exception("Failed to move to  wishlist from bag");
+      }
+    } catch (error) {
+      throw Exception("Error: $error");
+    }
+  }
+
+  Future<CheckOutModel> checkOut() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
+    try {
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+      final response = await dio.get(
+        "http://10.0.2.2:3000/checkout",
+      );
+
+      if (response.statusCode == 200) {
+        print(response.headers.map['jwt']
+            .toString()
+            .split(' ')
+            .first
+            .split('[')
+            .last);
+        print(response.headers);
+        print('response ok');
+        return CheckOutModel.fromJson(response.data);
+      } else {
+        throw Exception("Failed to get cart");
       }
     } catch (error) {
       throw Exception("Error: $error");

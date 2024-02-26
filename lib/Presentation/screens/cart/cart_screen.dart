@@ -6,6 +6,8 @@ import 'package:glam_garb/Infrastructure/service/cart/cart_repo.dart';
 import 'package:glam_garb/Presentation/screens/cart/widgets/cart_item_widget.dart';
 import 'package:glam_garb/Presentation/screens/product/product_details_page.dart';
 import 'package:glam_garb/Shared/constants/constants.dart';
+import 'package:glam_garb/application/checkOut/check_out_bloc.dart';
+import 'package:glam_garb/presentation/screens/cart/check_out/check_out_screens/select_adress_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -24,15 +26,15 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: kblackcolor,
       appBar: AppBar(
-        title: const Column(
+        title: Column(
           children: [
-            Text(
+            const Text(
               'Your',
               style: TextStyle(color: kwhite),
             ),
             Text(
               'Cart Items',
-              style: TextStyle(color: kwhite, fontWeight: FontWeight.w800),
+              style: textstyleTitle,
             ),
           ],
         ),
@@ -58,8 +60,7 @@ class _CartScreenState extends State<CartScreen> {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
-                } else if (!snapshot.hasData ||
-                    snapshot.data?.productsInCart == []) {
+                } else if (!snapshot.hasData || snapshot.data?.total == 0) {
                   return Center(
                       child: Text(
                     'No items found.',
@@ -73,50 +74,74 @@ class _CartScreenState extends State<CartScreen> {
                       children: [
                         kheight20,
                         ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: cart.productsInCart!.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductDetails(
-                          title: cart.productsInCart![index].productName ?? '',
-                          descr: cart.productsInCart![index].description ?? '',
-                          price: cart.productsInCart![index].salePrice!,
-                          imgurl: cart.productsInCart![index].images ?? [],
-                          id: cart.productsInCart![index].id ?? '',
-                        ),
-                      ),
-                    );
-                  
-                              },
-                              child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 8,
-                                  ),
-                                  child: CartItemCard(
-                                    imageUrl: cart.productsInCart![index]
-                                            .images![0].url ??
-                                        '',
-                                    itemName: cart.productsInCart![index]
-                                            .productName ??
-                                        '',
-                                    itemCount:
-                                        cart.userData!.cart![index].quantity ??
-                                            0,
-                                    onIncrement: () {},
-                                    onDecrement: () {},
-                                    onDelete: () {},
-                                    price: cart.productsInCart![index].salePrice
-                                        .toString(),
-                                    id: cart.userData!.cart![index].id ?? '',
-                                    size:
-                                        cart.userData!.cart![index].size ?? '',
-                                  ))),
-                        ),
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: cart.productsInCart!.length,
+                            itemBuilder: (context, index) {
+                              if (index < cart.productsInCart!.length) {
+                                return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ProductDetails(
+                                            title: cart.productsInCart![index]
+                                                    .productName ??
+                                                '',
+                                            descr: cart.productsInCart![index]
+                                                    .description ??
+                                                '',
+                                            price: cart.productsInCart![index]
+                                                    .salePrice ??
+                                                0,
+                                            imgurl: cart.productsInCart![index]
+                                                    .images ??
+                                                [],
+                                            id: cart.productsInCart![index]
+                                                    .id ??
+                                                '',
+                                            sizes: cart.productsInCart![index]
+                                                    .sizes ??
+                                                [],
+                                            colors: cart.productsInCart![index]
+                                                    .color ??
+                                                [],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                        margin: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 8,
+                                        ),
+                                        child: CartItemCard(
+                                          imageUrl: cart.productsInCart![index]
+                                                  .images![0].url ??
+                                              '',
+                                          itemName: cart.productsInCart![index]
+                                                  .productName ??
+                                              '',
+                                          itemCount: cart.userData!.cart![index]
+                                                  .quantity ??
+                                              0,
+                                          onIncrement: () {},
+                                          onDecrement: () {},
+                                          onDelete: () {},
+                                          price: cart
+                                              .productsInCart![index].salePrice
+                                              .toString(),
+                                          id: cart.userData!.cart![index].id ??
+                                              '',
+                                          size: cart.userData!.cart![index]
+                                                  .size ??
+                                              '',
+                                        )));
+                              } else {
+                                return const Text(
+                                    'no data found'); // Or some placeholder widget
+                              }
+                            }),
                       ],
                     ),
                   );
@@ -199,7 +224,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    '0%',
+                                    '0',
                                     style: textstyle4,
                                   )
                                 ],
@@ -230,7 +255,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    cart.total.toString(),
+                                    '₹${cart.total.toString()}',
                                     style: textstyle4,
                                   )
                                 ],
@@ -306,7 +331,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    cart.total.toString(),
+                                    '₹${cart.total.toString()}',
                                     style: textstyle4,
                                   )
                                 ],
@@ -327,14 +352,40 @@ class _CartScreenState extends State<CartScreen> {
           left: 85,
           child: Column(
             children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.orange)),
-                child: Text(
-                  'Proceed to CheckOut',
-                  style: textstyle3,
-                ),
+              BlocConsumer<CheckOutBloc, CheckOutState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                  if (state.checkOut != null) {
+                    if (state.checkOut!.total == 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('No Items In Cart to CheckOut'),
+                        backgroundColor: Colors.red,
+                      ));
+                    } else if (state.checkOut!.total != null) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const CheckOutAddressScreen()));
+                    }
+                  }
+                },
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      context
+                          .read<CheckOutBloc>()
+                          .add(CheckOutEvent.checkOut());
+                    },
+                    style: const ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.orange)),
+                    child: Text(
+                      'Proceed to CheckOut',
+                      style: textstyle3,
+                    ),
+                  );
+                },
               ),
             ],
           ),

@@ -818,16 +818,20 @@ class _$CartStateImpl implements _CartState {
             other is _$CartStateImpl &&
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
-            (identical(other.updateCart, updateCart) ||
-                other.updateCart == updateCart) &&
-            (identical(other.delCart, delCart) || other.delCart == delCart) &&
-            (identical(other.cartToWishlist, cartToWishlist) ||
-                other.cartToWishlist == cartToWishlist));
+            const DeepCollectionEquality()
+                .equals(other.updateCart, updateCart) &&
+            const DeepCollectionEquality().equals(other.delCart, delCart) &&
+            const DeepCollectionEquality()
+                .equals(other.cartToWishlist, cartToWishlist));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isloading, updateCart, delCart, cartToWishlist);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isloading,
+      const DeepCollectionEquality().hash(updateCart),
+      const DeepCollectionEquality().hash(delCart),
+      const DeepCollectionEquality().hash(cartToWishlist));
 
   @JsonKey(ignore: true)
   @override

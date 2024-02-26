@@ -948,19 +948,23 @@ class _$WishlistStateImpl implements _WishlistState {
             other is _$WishlistStateImpl &&
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
-            (identical(other.wishlist, wishlist) ||
-                other.wishlist == wishlist) &&
-            (identical(other.getWishlist, getWishlist) ||
-                other.getWishlist == getWishlist) &&
-            (identical(other.deleteWishlist, deleteWishlist) ||
-                other.deleteWishlist == deleteWishlist) &&
-            (identical(other.wishlistToCart, wishlistToCart) ||
-                other.wishlistToCart == wishlistToCart));
+            const DeepCollectionEquality().equals(other.wishlist, wishlist) &&
+            const DeepCollectionEquality()
+                .equals(other.getWishlist, getWishlist) &&
+            const DeepCollectionEquality()
+                .equals(other.deleteWishlist, deleteWishlist) &&
+            const DeepCollectionEquality()
+                .equals(other.wishlistToCart, wishlistToCart));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, wishlist, getWishlist,
-      deleteWishlist, wishlistToCart);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isloading,
+      const DeepCollectionEquality().hash(wishlist),
+      const DeepCollectionEquality().hash(getWishlist),
+      const DeepCollectionEquality().hash(deleteWishlist),
+      const DeepCollectionEquality().hash(wishlistToCart));
 
   @JsonKey(ignore: true)
   @override

@@ -11,7 +11,8 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   final CategoryRepo repo;
   CategoryBloc(this.repo) : super(CategoryState.inital()) {
     on<_GetAllCategory>((event, emit) async {
-      final getCat = await repo.getAllProducts(event.search,event.colors,event.sizes,event.categories,event.brands);
+      final getCat = await repo.getAllProducts(event.search, event.colors,
+          event.sizes, event.categories, event.brands);
       emit(state.copyWith(getcategory: getCat, isloading: false));
     });
 
@@ -27,5 +28,4 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       emit(state.copyWith(getcategory: getWomenCat, isloading: false));
     });
   }
-
 }

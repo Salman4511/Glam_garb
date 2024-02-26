@@ -20,14 +20,14 @@ class FilterDialog extends StatefulWidget {
       required this.brandOptions,
       required this.categoryOptions,
       required this.filterOptions,
-      required this.searchText, required this.selectedCategory});
+      required this.searchText,
+      required this.selectedCategory});
 
   @override
   _FilterDialogState createState() => _FilterDialogState();
 }
 
 class _FilterDialogState extends State<FilterDialog> {
-  
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryBloc, CategoryState>(
@@ -74,34 +74,32 @@ class _FilterDialogState extends State<FilterDialog> {
               builder: (context, state) {
                 return TextButton(
                   onPressed: () {
-                    
                     print(widget.filterOptions.selectedColors);
-                    if(widget.selectedCategory=='all'){
-                    context.read<CategoryBloc>().add(
-                        CategoryEvent.getAllCategory(
-                            widget.searchText,
-                            widget.filterOptions.selectedColors,
-                            widget.filterOptions.selectedSizes,
-                            widget.filterOptions.selectedCategories,
-                            widget.filterOptions.selectedBrands));
-                            }
-                            else if(widget.selectedCategory=='men'){
-                               context.read<CategoryBloc>().add(
+                    if (widget.selectedCategory == 'all') {
+                      context.read<CategoryBloc>().add(
+                          CategoryEvent.getAllCategory(
+                              widget.searchText,
+                              widget.filterOptions.selectedColors,
+                              widget.filterOptions.selectedSizes,
+                              widget.filterOptions.selectedCategories,
+                              widget.filterOptions.selectedBrands));
+                    } else if (widget.selectedCategory == 'men') {
+                      context.read<CategoryBloc>().add(
                           CategoryEvent.getMenCategory(
                               widget.searchText,
                               widget.filterOptions.selectedColors,
                               widget.filterOptions.selectedSizes,
                               widget.filterOptions.selectedCategories,
                               widget.filterOptions.selectedBrands));
-                            }else{
-                              context.read<CategoryBloc>().add(
+                    } else {
+                      context.read<CategoryBloc>().add(
                           CategoryEvent.getWomenCategory(
                               widget.searchText,
                               widget.filterOptions.selectedColors,
                               widget.filterOptions.selectedSizes,
                               widget.filterOptions.selectedCategories,
                               widget.filterOptions.selectedBrands));
-                            }
+                    }
                     Navigator.of(context).pop();
                   },
                   child: const Text('Apply'),

@@ -8,6 +8,8 @@ import 'package:glam_garb/Presentation/screens/wishlist/wishlist_screen.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
 class navPage extends StatefulWidget {
+  const navPage({super.key});
+
   @override
   _navPageState createState() => _navPageState();
 }

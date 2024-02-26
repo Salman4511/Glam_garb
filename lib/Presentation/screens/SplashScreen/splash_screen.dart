@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
-import 'package:glam_garb/Presentation/screens/NavBar/nav_bar.dart';
+import 'package:glam_garb/presentation/screens/NavBar/nav_bar.dart';
 import 'dart:async';
 
-import 'package:glam_garb/Presentation/screens/authentication/login_screen.dart';
+import 'package:glam_garb/presentation/screens/authentication/login_screen.dart';
 
 class splashscreen extends StatefulWidget {
   const splashscreen({

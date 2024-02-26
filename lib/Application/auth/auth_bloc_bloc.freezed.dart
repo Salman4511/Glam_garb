@@ -1225,18 +1225,23 @@ class _$AuthBlocStateImpl implements _AuthBlocState {
             other is _$AuthBlocStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.user, user) &&
             (identical(other.loginUser, loginUser) ||
                 other.loginUser == loginUser) &&
-            (identical(other.otp, otp) || other.otp == otp) &&
-            (identical(other.verifyOtp, verifyOtp) ||
-                other.verifyOtp == verifyOtp) &&
-            (identical(other.logout, logout) || other.logout == logout));
+            const DeepCollectionEquality().equals(other.otp, otp) &&
+            const DeepCollectionEquality().equals(other.verifyOtp, verifyOtp) &&
+            const DeepCollectionEquality().equals(other.logout, logout));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, isLoading, user, loginUser, otp, verifyOtp, logout);
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(user),
+      loginUser,
+      const DeepCollectionEquality().hash(otp),
+      const DeepCollectionEquality().hash(verifyOtp),
+      const DeepCollectionEquality().hash(logout));
 
   @JsonKey(ignore: true)
   @override

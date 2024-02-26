@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:glam_garb/Domain/response_models/LoginModel/user_login/user_login.dart';
 import 'package:glam_garb/Domain/response_models/log_out/log_out_model.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/check_otp/check_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/send_otp/send_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/user_register/user_register.dart';
+import 'package:glam_garb/domain/response_models/LoginModel/user_login/user_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
@@ -28,14 +28,14 @@ class AuthRepo {
   }
 
   Future<UserLogin> singIn(String email, String password) async {
-    UserLogin logiUser = UserLogin(name: "");
+    UserLogin logiUser = UserLogin(token: "");
     try {
       final response = await Dio().post("http://10.0.2.2:3000/login",
           data: <String, dynamic>{"email": email, "password": password});
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
         logiUser = UserLogin.fromJson(response.data);
-        await _saveAuthId(logiUser.id!);
+        await _saveAuthId(logiUser.token!);
         return logiUser;
       } else {
         print("the response get is not oky");
@@ -53,6 +53,14 @@ class AuthRepo {
       await _loadAuthId();
     }
     return _authId != null;
+  }
+
+  Future<String?> getAuthToken() async {
+    // If authId is not loaded, load it from SharedPreferences asynchronously
+    if (_authId == null) {
+      await _loadAuthId();
+    }
+    return _authId;
   }
 
   Future<UserRegister> signUp(

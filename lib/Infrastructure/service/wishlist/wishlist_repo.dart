@@ -3,14 +3,32 @@ import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_add_mo
 import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_delete_model/wish_list_delete_model.dart';
 import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_get_model/wish_list_get_model.dart';
 import 'package:glam_garb/Domain/response_models/wishlist_model/wish_list_to_bag_model/wish_list_to_bag_model.dart';
+import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
 
 class WishListRepo {
-  static const String _jwt = "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTY5NGNhOTk2YWNmMTdjMjcwZTMwMyIsImlhdCI6MTcwNzMxNTk1MiwiZXhwIjoxNzA3NTc1MTUyfQ.PDFb6nReyTGfcLG7b228AT6Ey0OElv3s3_fKIXe94Hw";
+  late AuthRepo repo;
+  String? authToken;
+  late String _jwt;
+  late Dio dio;
+  WishListRepo() {
+    _jwt = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    authToken = await repo.getAuthToken();
+    _jwt = "jwt=$authToken";
+
+    dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
+  }
+
   Future<WishListAddModel> addToWishList(String id) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.post("http://10.0.2.2:3000/wishlist-add",
           data: <String, dynamic>{"productId": id});
@@ -28,10 +46,11 @@ class WishListRepo {
   }
 
   Future<WishListGetModel> getWishList() async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
         "http://10.0.2.2:3000/wishlist",
@@ -50,10 +69,11 @@ class WishListRepo {
   }
 
   Future<WishlistDeleteModel> deleteFromWishList(String id) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
           "http://10.0.2.2:3000/wishlist/deleteItem?itemId=$id",
@@ -72,10 +92,11 @@ class WishListRepo {
   }
 
   Future<WishlistToCartModel> addToCart(String id) async {
+    if (_jwt.isEmpty) {
+      await initialize();
+    }
     try {
-      final dio = Dio(BaseOptions(headers: {
-        'Cookie':_jwt
-      }));
+      // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
           "http://10.0.2.2:3000/wishlist-to-bag?id=$id",

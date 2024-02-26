@@ -13,7 +13,9 @@ import 'package:glam_garb/Presentation/screens/product/product_details_page.dart
 import 'package:glam_garb/Shared/constants/constants.dart';
 
 class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key});
+  const CategoryScreen({
+    super.key,
+  });
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
@@ -173,9 +175,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         builder: (context) => ProductDetails(
                           title: products.products![index].productName ?? '',
                           descr: products.products![index].description ?? '',
-                          price: products.products![index].salePrice!,
+                          price: products.products![index].salePrice ?? 0,
                           imgurl: products.products![index].images ?? [],
                           id: products.products![index].id ?? '',
+                          sizes: products.products![index].sizes ?? [],
+                          colors: products.products![index].color ?? [],
                         ),
                       ),
                     );
@@ -244,7 +248,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               brandOptions: brandNames,
               categoryOptions: categoryNames,
               filterOptions: filterOptions,
-              searchText: searchController.text, 
+              searchText: searchController.text,
               selectedCategory: selectedCategory,
             );
           }

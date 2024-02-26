@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/wishlist/wishlist_bloc.dart';
 import 'package:glam_garb/Shared/constants/constants.dart';
+import 'package:glam_garb/infrastructure/service/wishlist/wishlist_repo.dart';
 
 class ProductCardWidget extends StatefulWidget {
   final int salePrice;
@@ -26,7 +27,7 @@ class ProductCardWidget extends StatefulWidget {
 
 class _ProductCardWidgetState extends State<ProductCardWidget> {
   bool isFavorited = false;
-
+  WishListRepo repo = WishListRepo();
   @override
   Widget build(BuildContext context) {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
@@ -86,9 +87,20 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                   }
                   print(widget.id);
                 },
-                child: Icon(
-                  isFavorited ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorited ? Colors.red : Colors.white,
+                child: FutureBuilder(
+                  future: repo.getWishList(),
+                  builder: (context, snapshot) => Icon(
+                    snapshot.data!.userData!.wishlist!.any(
+                      (item) => item.productId == widget.id,
+                    )
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: snapshot.data!.userData!.wishlist!.any(
+                      (item) => item.productId == widget.id,
+                    )
+                        ? Colors.red
+                        : Colors.white,
+                  ),
                 ),
               );
             },

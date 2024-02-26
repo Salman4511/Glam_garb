@@ -4,6 +4,7 @@ import 'package:glam_garb/Domain/response_models/cart_model/cart_delete_model/ca
 import 'package:glam_garb/Domain/response_models/cart_model/cart_edit_model/cart_update_quantity_model.dart';
 import 'package:glam_garb/Domain/response_models/cart_model/cart_to_wishlist_model/cart_to_wishlist_model.dart';
 import 'package:glam_garb/Infrastructure/service/cart/cart_repo.dart';
+import 'package:glam_garb/domain/response_models/check_out_model/check_out_model/check_out_model.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';

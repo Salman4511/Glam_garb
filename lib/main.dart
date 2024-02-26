@@ -9,6 +9,12 @@ import 'package:glam_garb/Infrastructure/service/cart/cart_repo.dart';
 import 'package:glam_garb/Infrastructure/service/category/category_repo.dart';
 import 'package:glam_garb/Infrastructure/service/wishlist/wishlist_repo.dart';
 import 'package:glam_garb/Presentation/screens/SplashScreen/splash_screen.dart';
+import 'package:glam_garb/application/checkOut/check_out_bloc.dart';
+import 'package:glam_garb/application/coupon/coupon_bloc.dart';
+import 'package:glam_garb/application/place_order/place_order_bloc.dart';
+import 'package:glam_garb/application/profile/profile_bloc.dart';
+import 'package:glam_garb/infrastructure/service/checkOut/check_out_repo.dart';
+import 'package:glam_garb/infrastructure/service/profile/profile_repo.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +26,8 @@ class MyApp extends StatelessWidget {
   final wishListrepo = WishListRepo();
   final cartRepo = CartRepo();
   final categoryRepo = CategoryRepo();
+  final checkOutRepo = CheckOutRepo();
+  final profileRepo = ProfileRepo();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -36,6 +44,18 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CategoryBloc(categoryRepo),
+        ),
+        BlocProvider(
+          create: (context) => CheckOutBloc(checkOutRepo),
+        ),
+        BlocProvider(
+          create: (context) => CouponBloc(checkOutRepo),
+        ),
+        BlocProvider(
+          create: (context) => PlaceOrderBloc(checkOutRepo),
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(profileRepo),
         ),
       ],
       child: MaterialApp(

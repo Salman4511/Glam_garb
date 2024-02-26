@@ -915,12 +915,13 @@ class _$CategoryStateImpl implements _CategoryState {
             other is _$CategoryStateImpl &&
             (identical(other.isloading, isloading) ||
                 other.isloading == isloading) &&
-            (identical(other.getcategory, getcategory) ||
-                other.getcategory == getcategory));
+            const DeepCollectionEquality()
+                .equals(other.getcategory, getcategory));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isloading, getcategory);
+  int get hashCode => Object.hash(
+      runtimeType, isloading, const DeepCollectionEquality().hash(getcategory));
 
   @JsonKey(ignore: true)
   @override

@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:glam_garb/Domain/response_models/LoginModel/user_login/user_login.dart';
 import 'package:glam_garb/Domain/response_models/log_out/log_out_model.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/check_otp/check_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/send_otp/send_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/user_register/user_register.dart';
 import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
+import 'package:glam_garb/domain/response_models/LoginModel/user_login/user_login.dart';
 import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'auth_bloc_bloc.freezed.dart';
@@ -40,5 +40,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       final logOut = await repo.logOut();
       emit(state.copyWith(logout: logOut));
     });
+
+    
   }
 }

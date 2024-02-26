@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
-import 'package:glam_garb/Presentation/screens/NavBar/nav_bar.dart';
-import 'package:glam_garb/Presentation/screens/authentication/signup_page.dart';
+import 'package:glam_garb/presentation/screens/NavBar/nav_bar.dart';
+import 'package:glam_garb/presentation/screens/authentication/signup_page.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: BlocConsumer<AuthBloc, AuthBlocState>(
                     listener: (context, state) {
                       if (state.loginUser != null) {
-                        if (state.loginUser!.name != "") {
+                        if (state.loginUser!.token != "") {
                           Navigator.pushReplacement(context, MaterialPageRoute(
                             builder: (context) {
                               return navPage();
