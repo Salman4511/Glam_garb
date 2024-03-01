@@ -139,9 +139,9 @@ class _WishListState extends State<WishList> {
   Widget build(BuildContext context) {
     WishListRepo repo = WishListRepo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
         title: Text('Your wish list', style: textstyleTitle),
         centerTitle: true,
       ),

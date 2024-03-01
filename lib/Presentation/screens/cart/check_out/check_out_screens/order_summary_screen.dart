@@ -41,7 +41,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
     CheckOutRepo repo = CheckOutRepo();
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: ListView(
         children: [
           kheight,
@@ -51,13 +51,13 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios,
-                    color: kwhite,
+                    // color: kwhite,
                   )),
               Text(
                 'Order Summary',
-                style: textstyle3,
+                style: textstyle1,
               ),
             ],
           ),
@@ -69,9 +69,9 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
             textStyle3: textstyle4,
             radius2: 15,
             radius3: 13,
-            color2: Colors.blue,
-            color1: kwhite,
-            color3: kwhite,
+            color2: baseColor,
+            color1: Colors.grey,
+            color3: Colors.grey,
           ),
           Column(
             children: [
@@ -79,7 +79,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
               Row(
                 children: [
                   kwidth,
-                  Text('Deliver To:', style: textstyle3),
+                  Text('Deliver To:', style: textstyle1),
                 ],
               ),
             ],
@@ -87,12 +87,15 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
+              color: Colors.grey,
               child: Column(
                 children: [
                   kheight,
                   Row(
                     children: [
-                      kwidth,
+                      const SizedBox(
+                        width: 20,
+                      ),
                       Text(
                         widget.name,
                         style: textstyle4,
@@ -100,21 +103,28 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                     ],
                   ),
                   kheight,
-                  Text(
-                    '${widget.houseName}, ${widget.area}, ${widget.city}',
-                  ),
                   Row(
                     children: [
                       const SizedBox(
-                        width: 50,
+                        width: 20,
+                      ),
+                      Text(
+                        '${widget.houseName}, ${widget.area}, ${widget.city}',
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                     const SizedBox(
+                        width: 20,
                       ),
                       Text('${widget.state} ${widget.pincode}'),
                     ],
                   ),
                   Row(
                     children: [
-                      const SizedBox(
-                        width: 50,
+                     const SizedBox(
+                        width: 20,
                       ),
                       Text('Mobile: ${widget.phone}'),
                     ],
@@ -130,7 +140,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
               Row(
                 children: [
                   kwidth,
-                  Text('Your Orders:', style: textstyle3),
+                  Text('Your Orders:', style: textstyle1),
                 ],
               ),
             ],
@@ -168,12 +178,14 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
+                                  color: Colors.grey,
                                   child: Row(
                                     children: [
                                       Container(
                                         height: 80,
                                         width: 80,
                                         decoration: BoxDecoration(
+                                          
                                             image: DecorationImage(
                                                 image: NetworkImage(baseUrl +
                                                     checkOut
@@ -193,16 +205,42 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                                             checkOut.productsInCart![index]
                                                     .productName ??
                                                 '',
-                                            style: textstyle4,
+                                            style: const TextStyle(color: Colors.black,
+                                             fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Courier')
+                                              ,
+                                          ),
+                                          SizedBox(
+                                            width: 250,
+                                            child: Text(
+                                              
+                                              '${checkOut.productsInCart![index].description}, ',
+                                              style:const TextStyle(
+                                                
+                                                fontFamily: 'Courier',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w800
+                                              ) ,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
                                           ),
                                           Text(
-                                            '${checkOut.productsInCart![index].description}, ',
-                                          ),
-                                          Text(
-                                              '${checkOut.productsInCart![index].brand} ${checkOut.productsInCart![index].category}'),
+                                              '${checkOut.productsInCart![index].brand} ${checkOut.productsInCart![index].category}',
+                                              style: const TextStyle(
+                                                
+                                                fontFamily: 'Courier',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w800
+                                              ) ,),
                                           Text(
                                             '₹${checkOut.productsInCart![index].salePrice}',
-                                            style: textstyle4,
+                                            style: const TextStyle(
+                                                
+                                                fontFamily: 'Courier',
+                                                fontSize: 19,
+                                                fontWeight: FontWeight.w800
+                                              ) ,
                                           ),
                                           kheight
                                         ],
@@ -220,12 +258,12 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
               Column(
                 children: [
                   const SizedBox(
-                    height: 330,
+                    height: 341,
                   ),
                   Container(
                     height: 60,
                     width: double.infinity,
-                    color: Colors.amberAccent,
+                    color: baseColor.shade300,
                     child: Row(
                       children: [
                         BlocBuilder<CheckOutBloc, CheckOutState>(
@@ -235,16 +273,16 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                               builder: (context, snapshot) {
                                 return Text(
                                     '    Total:₹${snapshot.data?.total}',
-                                    style: textstyle1);
+                                    style: textstyle3);
                               },
                             );
                           },
                         ),
                         const Spacer(),
                         ElevatedButton(
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.redAccent),
+                                MaterialStatePropertyAll(baseColor.shade700),
                           ),
                           onPressed: () {
                             Navigator.push(

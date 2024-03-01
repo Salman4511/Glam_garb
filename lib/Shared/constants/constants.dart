@@ -19,6 +19,8 @@ const kwhite = Colors.white;
 final buttoncolorblue = Colors.blueAccent[700];
 const buttoncolorWhite = Colors.white;
 const kblackcolor = Colors.black;
+const baseColor = Colors.brown;
+
 const kheight = SizedBox(
   height: 10,
 );
@@ -56,6 +58,10 @@ TextStyle textstyleblack = TextStyle(
   fontWeight: FontWeight.w900,
 );
 
+TextStyle courier =
+    TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Courier');
+
+
 TextStyle textstyle3 =
     TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
 
@@ -68,7 +74,7 @@ TextStyle textstyle5 =
 TextStyle textstyleWhite = TextStyle(color: Colors.white);
 
 TextStyle textstyleTitle =
-    TextStyle(color: kwhite, fontWeight: FontWeight.w800);
+    TextStyle(color: kblackcolor, fontWeight: FontWeight.w800);
 
 TextStyle textstyle6 =
     TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold);

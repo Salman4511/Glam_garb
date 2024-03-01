@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:glam_garb/shared/constants/constants.dart';
 
 class ClickableTile extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final IconData leading;
 
   const ClickableTile({
     required this.title,
-    required this.onTap,
+    required this.onTap, required this.leading,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(8),
-        margin: EdgeInsets.symmetric(vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(
+    return SizedBox(
+      height: 50,
+      child: ListTile(
+        onTap: onTap ,
+        title: Text(
           title,
           style: TextStyle(fontSize: 18),
         ),
+        trailing: Icon(Icons.arrow_forward_ios,color: baseColor,),
+        leading: Icon(leading,color: baseColor,),
       ),
     );
   }

@@ -33,6 +33,7 @@ dependencies:
   dio: ^5.4.0
   flutter:
     sdk: flutter
+  flutter_markdown: ^0.6.18
   flutter_bloc: ^8.1.3
   flutter_slider_drawer: ^2.1.3
   fluttertoast: ^8.2.4
@@ -67,6 +68,7 @@ flutter:
   assets:
     - animations/1.json
     - assets/images/
+    - assets/
 
 #   - images/a_dot_ham.jpeg
 # An image asset can refer to one or more resolution-specific "variants", see

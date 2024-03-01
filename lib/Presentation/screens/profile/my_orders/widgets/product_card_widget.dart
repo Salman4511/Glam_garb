@@ -117,8 +117,9 @@ class _OrderProductCardState extends State<OrderProductCard> {
                           builder: (context, state) {
                             return ElevatedButton(
                               onPressed: () {
-                                if (widget.status == "Delivered"||widget.returnRequest=='Return Rejected') {
-                                  print('It is delivered');
+                                if ((widget.status == "Delivered"&&widget.returnRequest!="Return Accepted"&&
+                                        widget.returnRequest !=
+                                            "Return requested")||widget.returnRequest=='Return Rejected') {
 
                               
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => ReturnOrderScreen(id:widget.id,)));
@@ -142,7 +143,8 @@ class _OrderProductCardState extends State<OrderProductCard> {
                                   widget.status == "Cancelled"
                                       ? 'Cancelled'
                                       : widget.status == "Pending" &&
-                                              widget.returnRequest == ''
+                                              widget.returnRequest == ''||
+                                              widget.status == "Shipped"
                                           ? 'Cancel'
                                           : widget.status == "Delivered"&& widget.returnRequest==''
                                               ? 'Request'

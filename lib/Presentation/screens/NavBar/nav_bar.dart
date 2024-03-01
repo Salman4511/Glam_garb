@@ -5,6 +5,7 @@ import 'package:glam_garb/Presentation/screens/cart/cart_screen.dart';
 import 'package:glam_garb/Presentation/screens/category/category_screen.dart';
 import 'package:glam_garb/Presentation/screens/profile/profile_screen.dart';
 import 'package:glam_garb/Presentation/screens/wishlist/wishlist_screen.dart';
+import 'package:glam_garb/shared/constants/constants.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
 class navPage extends StatefulWidget {
@@ -42,12 +43,12 @@ class _navPageState extends State<navPage> {
       theme: Theme.of(context).copyWith(
         // primaryColor: Colors.deepPurple[400],
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
-          cardColor: Colors.white,
+          primarySwatch:Colors.brown,
+          cardColor: Colors.black,
         ),
       ),
       home: Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         body: PageView(
           controller: _pageController,
           children: _pages,

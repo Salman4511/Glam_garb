@@ -35,6 +35,7 @@ class _WishListCardState extends State<WishListCard> {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      color: Colors.grey.withOpacity(0.2),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -65,8 +66,9 @@ class _WishListCardState extends State<WishListCard> {
                     // Product Description
                     Text(
                       widget.productDescription,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16,fontFamily: 'Courier'),
                       overflow: TextOverflow.ellipsis,
+                      
                     ),
                     // Product Size
                     Text(
@@ -74,12 +76,13 @@ class _WishListCardState extends State<WishListCard> {
                       style: TextStyle(
                           fontSize: 16,
                           color: widget.active ? Colors.green : Colors.red,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,fontFamily: 'Courier'),
                     ),
                     Text(
                       'Prize: ₹${widget.price}',
                       style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold,
+                          fontFamily: 'Courier'),
                     ),
                     // Cross Icon in Top-Right Corner
                     // Align(
@@ -120,7 +123,7 @@ class _WishListCardState extends State<WishListCard> {
                               ),
                               style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStatePropertyAll(Colors.amber)),
+                                      MaterialStatePropertyAll(baseColor)),
                             );
                           },
                         )),

@@ -138,13 +138,13 @@ class _CartItemCardState extends State<CartItemCard> {
                               print(widget.size);
                             },
                             child: Container(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(3),
                               decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
+                                shape: BoxShape.rectangle,
+                                color: Colors.white,
                               ),
                               child:
-                                  const Icon(Icons.remove, color: Colors.white),
+                                  const Icon(Icons.remove, color: Colors.black),
                             ),
                           );
                         },
@@ -180,10 +180,10 @@ class _CartItemCardState extends State<CartItemCard> {
                               print(widget.size);
                             },
                             child: Container(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(4),
                               decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
+                                shape: BoxShape.rectangle,
+                                color: baseColor,
                               ),
                               child: const Icon(Icons.add, color: Colors.white),
                             ),
@@ -227,23 +227,25 @@ class _CartItemCardState extends State<CartItemCard> {
             padding: const EdgeInsets.only(left: 15, right: 15),
             child: Row(
               children: [
+                kwidth5,
                 Text(
                   widget.itemName,
                   style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
+                      // color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 20,
+                      fontFamily: 'Courier'),
                 ),
                 const Spacer(),
                 Container(
                   height: 50,
                   width: 100,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30), color: kwhite),
+                      borderRadius: BorderRadius.circular(30), color: Colors.brown.withOpacity(0.5)),
                   child: Center(
                       child: Text(
                     '₹${widget.price}',
-                    style: textstyle1,
+                    style: courier,
                   )),
                 )
               ],

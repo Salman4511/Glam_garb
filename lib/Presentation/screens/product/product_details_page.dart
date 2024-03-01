@@ -45,7 +45,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: Stack(
         children: [
           Positioned(
@@ -59,9 +59,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                     Text(
                       widget.title,
                       style: const TextStyle(
-                          fontSize: 25,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          fontFamily: "Courier"
+                          ),
                     ),
                     SizedBox(
                       width: 300,
@@ -69,18 +70,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Text(
                         widget.descr,
                         overflow: TextOverflow.fade,
-                        style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
+                        style: courier
                       ),
                     ),
                     Text(
                       '₹${widget.price.toString()}',
                       style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          fontFamily: "Courier",
+                          ),
                     ),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -145,7 +144,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     Row(
                       children: [
@@ -167,7 +166,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               },
                               child: Container(
                                 decoration: const BoxDecoration(
-                                    color: Colors.yellow,
+                                    color: baseColor,
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(30),
                                         topRight: Radius.circular(30))),
@@ -176,7 +175,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 child: Center(
                                     child: Text(
                                   'Add to Cart',
-                                  style: textstyle1,
+                                  style: textstyle3,
                                 )),
                               ),
                             );
@@ -235,74 +234,79 @@ class _ProductDetailsState extends State<ProductDetails> {
                     );
                   },
                 ),
-                BlocConsumer<WishlistBloc, WishlistState>(
-                  listener: (context, state) {
-                    if (state.wishlist != null) {
-                      if (state.wishlist!.message ==
-                          "Product successfully added to wishlist") {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text('Added to WishList'),
-                          backgroundColor: Colors.red,
-                        ));
-                      } else if (state.wishlist!.message ==
-                          "Product is already in the wishlist") {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text('Already in the WishList'),
-                          backgroundColor: Colors.red,
-                        ));
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text('Error Occurred! Try again later.'),
-                          backgroundColor: Colors.red,
-                        ));
+                kwidth,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: BlocConsumer<WishlistBloc, WishlistState>(
+                    listener: (context, state) {
+                      if (state.wishlist != null) {
+                        if (state.wishlist!.message ==
+                            "Product successfully added to wishlist") {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Added to WishList'),
+                            backgroundColor: Colors.red,
+                          ));
+                        } else if (state.wishlist!.message ==
+                            "Product is already in the wishlist") {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Already in the WishList'),
+                            backgroundColor: Colors.red,
+                          ));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Error Occurred! Try again later.'),
+                            backgroundColor: Colors.red,
+                          ));
+                        }
                       }
-                    }
-                    // TODO: implement listener
-                  },
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SizedBox(
-                          width: 305,
-                          child: FutureBuilder(
-                            future: repo.getWishList(),
-                            builder: (context, snapshot) {
-                              if (snapshot.data != null) {
-                                return SlideAction(
-                                  alignment: Alignment.bottomCenter,
-                                  text: '   Add to Favorite',
-                                  textStyle: textstyle3,
-                                  sliderButtonIcon:
-                                      snapshot.data!.userData!.wishlist!.any(
-                                    (item) => item.productId == widget.id,
-                                  )
-                                          ? const Icon(Icons.favorite,
-                                              color: Colors.red)
-                                          : const Icon(Icons.favorite_border),
-                                  submittedIcon: const Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  ),
-                                  outerColor: kblackcolor,
-                                  onSubmit: () async {
-                                    context.read<WishlistBloc>().add(
-                                        WishlistEvent.addFavorite(widget.id));
-                                    setState(() {
-                                      isSlideCompleted = true;
-                                    });
-                                  },
-                                );
-                              } else {
-                                return const Text('Data is null');
-                              }
-                            },
-                          )),
-                    );
-                  },
-                )
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: SizedBox(
+                            width: 305,
+                            child: FutureBuilder(
+                              future: repo.getWishList(),
+                              builder: (context, snapshot) {
+                                if (snapshot.data != null) {
+                                  return SlideAction(
+                                    alignment: Alignment.bottomCenter,
+                                    text: '   Add to Favorite',
+                                    textStyle: textstyle3,
+                                    sliderButtonIcon:
+                                        snapshot.data!.userData!.wishlist!.any(
+                                      (item) => item.productId == widget.id,
+                                    )
+                                            ? const Icon(Icons.favorite,
+                                                color: Colors.red)
+                                            : const Icon(Icons.favorite_border),
+                                    submittedIcon: const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    ),
+                                    outerColor: baseColor.shade300,
+                                    onSubmit: () async {
+                                      context.read<WishlistBloc>().add(
+                                          WishlistEvent.addFavorite(widget.id));
+                                      setState(() {
+                                        isSlideCompleted = true;
+                                      });
+                                    },
+                                  );
+                                } else {
+                                  return const Text('Data is null');
+                                }
+                              },
+                            )),
+                      );
+                    },
+                  ),
+                ),
+                
               ]),
             ),
           ),
@@ -320,7 +324,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         },
                         icon: const Icon(
                           Icons.arrow_back_ios,
-                          color: kwhite,
+                          // color: kwhite,
                         )),
                   ],
                 ),

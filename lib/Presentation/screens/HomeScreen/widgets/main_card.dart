@@ -21,7 +21,7 @@ class _MainCardState extends State<MainCard> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 7),
       width: widget.width,
-      height: 250,
+      height: 200,
       decoration: BoxDecoration(
           borderRadius: kradius,
           image: DecorationImage(

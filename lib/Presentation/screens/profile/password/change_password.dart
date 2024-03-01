@@ -108,48 +108,51 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 // TODO: implement listener
               },
               builder: (context, state) {
-                return ElevatedButton(
-                  onPressed: () {
-                    String newPassword = _newPasswordController.text;
-                    String confirmPassword = _confirmPasswordController.text;
-                    if (newPassword.isNotEmpty && confirmPassword.isNotEmpty) {
-                      if (newPassword == confirmPassword) {
-                        context
-                            .read<ProfileBloc>()
-                            .add(ProfileEvent.changePwd(newPassword));
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Password changed successfully!'),
-                            backgroundColor: Colors.blue,
-                          ),
-                        );
-                        Navigator.pop(context);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      String newPassword = _newPasswordController.text;
+                      String confirmPassword = _confirmPasswordController.text;
+                      if (newPassword.isNotEmpty && confirmPassword.isNotEmpty) {
+                        if (newPassword == confirmPassword) {
+                          context
+                              .read<ProfileBloc>()
+                              .add(ProfileEvent.changePwd(newPassword));
+                
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Password changed successfully!'),
+                              backgroundColor: Colors.blue,
+                            ),
+                          );
+                          Navigator.pop(context);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'New password and confirm password do not match.'),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text(
-                                'New password and confirm password do not match.'),
+                                'Please enter both new password and confirm password.'),
                             backgroundColor: Colors.red,
                           ),
                         );
                       }
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                              'Please enter both new password and confirm password.'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    'Change Password',
-                    style: textstyle3,
+                    },
+                    child: Text(
+                      'Change Password',
+                      style: textstyle3,
+                    ),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.amber)),
                   ),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.amber)),
                 );
               },
             ),

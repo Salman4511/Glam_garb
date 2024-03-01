@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glam_garb/shared/constants/constants.dart';
 
 class BuildChoiceChip extends StatefulWidget {
   final String label;
@@ -25,7 +26,7 @@ class _BuildChoiceChipState extends State<BuildChoiceChip> {
         border: Border(
           bottom: BorderSide(
             color: widget.selectedCategory == widget.category
-                ? Colors.white
+                ? Colors.black
                 : Colors.transparent,
             width: 2.0,
           ),
@@ -37,7 +38,7 @@ class _BuildChoiceChipState extends State<BuildChoiceChip> {
           style: TextStyle(
             color: widget.selectedCategory == widget.category
                 ? Colors.white
-                : Colors.grey,
+                : Colors.white60,
             fontWeight: FontWeight.bold,
             fontSize: widget.selectedCategory == widget.category ? 16 : 14,
           ),
@@ -48,8 +49,8 @@ class _BuildChoiceChipState extends State<BuildChoiceChip> {
             widget.onSelect();
           }
         },
-        backgroundColor: Colors.black,
-        selectedColor: Colors.black,
+        backgroundColor: baseColor,
+        selectedColor: baseColor,
         elevation: widget.selectedCategory == widget.category ? 2 : 0,
         pressElevation: 2,
         shape: LinearBorder.none,

@@ -24,13 +24,13 @@ class _CartScreenState extends State<CartScreen> {
     CartRepo repo = CartRepo();
 
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
         title: Column(
           children: [
             const Text(
               'Your',
-              style: TextStyle(color: kwhite),
+              // style: TextStyle(color: kwhite),
             ),
             Text(
               'Cart Items',
@@ -43,9 +43,9 @@ class _CartScreenState extends State<CartScreen> {
             onPressed: () {},
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: kwhite,
+              // color: kwhite,
             )),
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
       ),
       body: Stack(children: [
         BlocConsumer<CartBloc, CartState>(
@@ -177,8 +177,8 @@ class _CartScreenState extends State<CartScreen> {
                         height: 255,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.circular(20)),
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(5)),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
@@ -194,7 +194,7 @@ class _CartScreenState extends State<CartScreen> {
                                   });
                                 },
                                 child: Container(
-                                  height: 13,
+                                  height: 5,
                                   width: 150,
                                   decoration: BoxDecoration(
                                       color: kblackcolor,
@@ -206,12 +206,12 @@ class _CartScreenState extends State<CartScreen> {
                                 children: [
                                   Text(
                                     'Quantity',
-                                    style: textstyle1,
+                                    style: courier,
                                   ),
                                   const Spacer(),
                                   Text(
                                     cart.quantity.toString(),
-                                    style: textstyle4,
+                                    style: courier,
                                   )
                                 ],
                               ),
@@ -220,12 +220,12 @@ class _CartScreenState extends State<CartScreen> {
                                 children: [
                                   Text(
                                     'Discount',
-                                    style: textstyle1,
+                                    style: courier,
                                   ),
                                   const Spacer(),
                                   Text(
                                     '0',
-                                    style: textstyle4,
+                                    style: courier,
                                   )
                                 ],
                               ),
@@ -234,12 +234,12 @@ class _CartScreenState extends State<CartScreen> {
                                 children: [
                                   Text(
                                     'Delivery Charges',
-                                    style: textstyle1,
+                                    style: courier,
                                   ),
                                   const Spacer(),
                                   Text(
                                     'Free',
-                                    style: textstyle4,
+                                    style: courier,
                                   )
                                 ],
                               ),
@@ -251,7 +251,7 @@ class _CartScreenState extends State<CartScreen> {
                                 children: [
                                   Text(
                                     'Total Amount',
-                                    style: textstyle1,
+                                    style: courier,
                                   ),
                                   const Spacer(),
                                   Text(
@@ -297,8 +297,8 @@ class _CartScreenState extends State<CartScreen> {
                       child: Container(
                         height: 120,
                         decoration: BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.circular(20)),
+                            color: Colors.brown.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(5)),
                         child: Column(
                           children: [
                             const SizedBox(
@@ -312,7 +312,7 @@ class _CartScreenState extends State<CartScreen> {
                                 });
                               },
                               child: Container(
-                                height: 13,
+                                height: 5,
                                 width: 150,
                                 decoration: BoxDecoration(
                                     color: kblackcolor,
@@ -327,12 +327,12 @@ class _CartScreenState extends State<CartScreen> {
                                   kheight50,
                                   Text(
                                     'Total Amount',
-                                    style: textstyle1,
+                                    style: courier,
                                   ),
                                   const Spacer(),
                                   Text(
                                     '₹${cart.total.toString()}',
-                                    style: textstyle4,
+                                    style: courier,
                                   )
                                 ],
                               ),
@@ -379,7 +379,7 @@ class _CartScreenState extends State<CartScreen> {
                     },
                     style: const ButtonStyle(
                         backgroundColor:
-                            MaterialStatePropertyAll(Colors.orange)),
+                            MaterialStatePropertyAll(baseColor)),
                     child: Text(
                       'Proceed to CheckOut',
                       style: textstyle3,

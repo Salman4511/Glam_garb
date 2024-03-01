@@ -39,10 +39,11 @@ class _CheckOutBottomButtonsWidgetState
   Widget build(BuildContext context) {
     return Row(
       children: [
+        kwidth,
         ElevatedButton(
-          style: const ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.orangeAccent),
-            fixedSize: MaterialStatePropertyAll(Size(195, 50)),
+          style:  ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(baseColor.shade400),
+            fixedSize: MaterialStatePropertyAll(Size(185, 50)),
           ),
           onPressed: () {
             Navigator.push(
@@ -56,6 +57,7 @@ class _CheckOutBottomButtonsWidgetState
             style: textstyle3,
           ),
         ),
+        kwidth,
         BlocConsumer<CheckOutBloc, CheckOutState>(
           listener: (context, state) {
             Navigator.pushReplacement(
@@ -99,9 +101,9 @@ class _CheckOutBottomButtonsWidgetState
           },
           builder: (context, state) {
             return ElevatedButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.amber),
-                fixedSize: MaterialStatePropertyAll(Size(195, 50)),
+              style:  ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(baseColor.shade900),
+                fixedSize: MaterialStatePropertyAll(Size(180, 50)),
               ),
               onPressed: () {
                 context

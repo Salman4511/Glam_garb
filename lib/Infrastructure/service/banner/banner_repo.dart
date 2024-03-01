@@ -7,7 +7,7 @@ class BannerRepo {
       final dio = Dio(BaseOptions(
         headers: {
           'Cookie':
-              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwODcxMDg4NywiZXhwIjoxNzA4OTcwMDg3fQ.kK9swpIS3qYPyZ3ZgNfVMK503XXyQ_bcrwtgpQmyeEI',
+              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwOTEwMzU5NiwiZXhwIjoxNzA5MzYyNzk2fQ.Ig_8RlrICadsz671i6fHoeQHYa0g7QxgZa33PQpSDXA',
         },
       ));
 

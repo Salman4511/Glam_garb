@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
 import 'package:glam_garb/infrastructure/service/auth/auth_repo.dart';
 import 'package:glam_garb/Presentation/screens/authentication/login_screen.dart';
 import 'package:glam_garb/infrastructure/service/profile/profile_repo.dart';
+import 'package:glam_garb/presentation/widget/about_us.dart';
+import 'package:glam_garb/presentation/widget/privacy_dialog.dart';
+import 'package:glam_garb/shared/constants/constants.dart';
 
 class MenuWidget extends StatelessWidget {
   final Function(String)? onItemClick;
@@ -16,7 +20,7 @@ class MenuWidget extends StatelessWidget {
     return Container(
       color: Colors.white,
       // padding: const EdgeInsets.only(top: 50),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      child: Column( children: [
         FutureBuilder(
             future: profilerepo.userDetails(),
             builder: (context, snapshot) {
@@ -25,37 +29,60 @@ class MenuWidget extends StatelessWidget {
                 color: Colors.black.withOpacity(0.4),
                 width: double.infinity,
                 height: 180,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Row(
                   children: [
-                    Text(
-                      user![0].name ?? 'user',
-                      style: TextStyle(fontSize: 20),
+                    kwidth,
+                    const CircleAvatar(
+                      radius: 35,
+                      child: Icon(Icons.person),
+                      backgroundColor: kblackcolor,
                     ),
-                    Text(
-                      user[0].email ?? '',
-                      style: TextStyle(fontSize: 20),
-                    )
+                    kwidth,
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment:  CrossAxisAlignment.start,
+                      children: [
+                        kheight60,
+                        Text(
+                          user![0].name ?? 'user',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Text(
+                          user[0].email ?? '',
+                          style: TextStyle(fontSize: 20),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               );
             }),
-        const ListTile(
-          title: Text('Terms And Conditions'),
-          leading: Icon(Icons.format_size_rounded),
-        ),
-        const ListTile(
+        // const ListTile(
+        //   title: Text('Terms And Conditions'),
+        //   leading: Icon(Icons.format_size_rounded),
+        // ),
+         ListTile(
           title: Text('Privacy Policy'),
           leading: Icon(Icons.policy),
+          onTap: (){
+           showDialog(
+                context: context,
+                builder: (context) {
+                  return privacydialoge(mdFileName: 'privacy_policy.md');
+                });
+          },
         ),
         const ListTile(
             title: Text('Help'), leading: Icon(Icons.question_mark_outlined)),
-        const ListTile(
+         ListTile(
           title: Text('About Us'),
           leading: Icon(
             Icons.person_pin_circle_outlined,
             size: 28,
           ),
+          onTap: (){
+            Navigator.push(context,CupertinoPageRoute(builder: (context) => AboutUs(),));
+          },
         ),
         const Spacer(),
         OutlinedButton(

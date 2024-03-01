@@ -13,11 +13,12 @@ class PlaceOrderWithRazorPay extends StatefulWidget {
   final int total;
   final int discount;
   final int catDiscount;
+  final int discountedTotal;
   const PlaceOrderWithRazorPay(
       {super.key,
       required this.total,
       required this.discount,
-      required this.catDiscount});
+      required this.catDiscount, required this.discountedTotal});
 
   @override
   State<PlaceOrderWithRazorPay> createState() => _PlaceOrderWithRazorPayState();
@@ -38,49 +39,84 @@ class _PlaceOrderWithRazorPayState extends State<PlaceOrderWithRazorPay> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kwhite,
+      ),
+      body: Column(
         children: [
-          kwidth45,
-          Text(
-            "₹${widget.total.toString()}",
+          kheight20,
+          Row(
+            children: [
+              kwidth,
+              Text('Click Place Order For ',style: textstyle1,)
+            ],
           ),
-          Spacer(),
-          ElevatedButton(
-              // style: elevatedButtonStyle,
-              onPressed: () async {
-                var options = {
-                  'method': {
-                    'netbanking': true,
-                    'card': true,
-                    'upi': true,
-                    'wallet': true,
-                  },
-                  'key': 'rzp_test_ghgpkn7YCYJJZQ',
-                  'amount':
-                      widget.total * 100, //in the smallest currency sub-unit.
-                  'name': 'user',
-                  "entity": "order",
-                  "status": "created",
-                  "currency": "INR",
-                  // 'order_id': 'order_EMBFqjDHEEn80l',
-                  "notes": [], // Generate order_id using Orders API
-                  'description': 'razorpay glamgarbapp',
-                  'timeout': 120, // in seconds
-                  'prefill': {
-                    'contact': '9895840715',
-                    'email': 'user@gmail.com'
-                  }
-                };
-                // paymentId = state.selectedPaymentMethod!.id!;
-                _razorpay.open(options);
-              },
-              child: const Text(
-                "Place Order",
-                style:
-                    TextStyle(fontWeight: FontWeight.w700, color: kblackcolor),
-              )),
+          Text(
+            'Confirm The Order...',
+            style: textstyle1,
+          ),
+          kheight50,
+          Center(
+            
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Set border color as needed
+                    width: 2.0, // Set border width as needed
+                  ),
+                  borderRadius: BorderRadius.circular(
+                      8.0), // Adjust border radius as needed
+                ),
+                child: Row(
+                  children: [
+                    kwidth45,
+                    Text(
+                      "₹${widget.discountedTotal<0?1: widget.discountedTotal.toString()}",style: textstyle1,
+                    ),
+                    Spacer(),
+                    ElevatedButton(
+                        style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(baseColor)),
+                        onPressed: () async {
+                          var options = {
+                            'method': {
+                              'netbanking': true,
+                              'card': true,
+                              'upi': true,
+                              'wallet': true,
+                            },
+                            'key': 'rzp_test_ghgpkn7YCYJJZQ',
+                            'amount':
+                                widget.total * 100, //in the smallest currency sub-unit.
+                            'name': 'user',
+                            "entity": "order",
+                            "status": "created",
+                            "currency": "INR",
+                            // 'order_id': 'order_EMBFqjDHEEn80l',
+                            "notes": [], // Generate order_id using Orders API
+                            'description': 'razorpay glamgarbapp',
+                            'timeout': 120, // in seconds
+                            'prefill': {
+                              'contact': '9895840715',
+                              'email': 'user@gmail.com'
+                            }
+                          };
+                          // paymentId = state.selectedPaymentMethod!.id!;
+                          _razorpay.open(options);
+                        },
+                        child: const Text(
+                          "Place Order",
+                          style:
+                              TextStyle(fontWeight: FontWeight.w700, color: kwhite),
+                        )),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

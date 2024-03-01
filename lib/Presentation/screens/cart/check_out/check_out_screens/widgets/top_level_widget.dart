@@ -44,7 +44,7 @@ class _TopLevelWidgetState extends State<TopLevelWidget> {
         Container(
           height: 2,
           width: 100,
-          color: kwhite,
+          color:kblackcolor,
         ),
         kwidth5,
         CircleAvatar(
@@ -56,7 +56,7 @@ class _TopLevelWidgetState extends State<TopLevelWidget> {
         Container(
           height: 2,
           width: 100,
-          color: kwhite,
+          color: kblackcolor,
         ),
         kwidth5,
         CircleAvatar(

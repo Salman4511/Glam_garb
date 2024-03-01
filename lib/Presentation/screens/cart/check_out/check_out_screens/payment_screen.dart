@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:glam_garb/Presentation/screens/HomeScreen/home_screen.dart';
 import 'package:glam_garb/application/coupon/coupon_bloc.dart';
 import 'package:glam_garb/application/place_order/place_order_bloc.dart';
+import 'package:glam_garb/infrastructure/service/checkOut/check_out_repo.dart';
 import 'package:glam_garb/presentation/screens/NavBar/nav_bar.dart';
 import 'package:glam_garb/presentation/screens/cart/check_out/check_out_screens/razorpay_screen.dart';
 import 'package:glam_garb/presentation/screens/cart/check_out/check_out_screens/widgets/top_level_widget.dart';
@@ -210,11 +210,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   // Flag to determine if the coupon entry fields should be visible
   bool showCouponEntry = false;
-  dynamic discount = 0;
+  int discount = 0;
+  int discountedTotal=0; 
+
+   @override
+     void initState() {
+    super.initState();
+    // Initialize discountedTotal with the initial total value
+    discountedTotal = widget.total;
+  } 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: Builder(
         builder: (BuildContext scaffoldContext) {
           return ListView(
@@ -225,13 +233,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back_ios,
-                        color: kwhite,
+                        // color: kwhite,
                       )),
                   Text(
-                    'Order Summary',
-                    style: textstyle3,
+                    'Payment',
+                    style: textstyle1,
                   ),
                 ],
               ),
@@ -243,9 +251,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 textStyle3: textstyle3,
                 radius2: 13,
                 radius3: 15,
-                color3: Colors.blue,
-                color1: kwhite,
-                color2: kwhite,
+                color3: baseColor,
+                color1: Colors.grey,
+                color2: Colors.grey,
               ),
               kheight20,
               Padding(
@@ -254,7 +262,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   // height: 350,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: kwhite,
+                    color: baseColor.shade100,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
@@ -349,90 +357,105 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               },
                               builder: (context, state) {
                                 return ElevatedButton(
+                                  style: ButtonStyle(backgroundColor:MaterialStatePropertyAll(baseColor.shade300)),
                                   onPressed: () {
                                     String couponCode =
                                         couponCodeController.text;
                                     context.read<CouponBloc>().add(
                                         CouponEvent.applyCoupon(
                                             widget.total, couponCode));
-                                    discount = state.coupon!.discount;
+                                    discount = state.coupon?.discount??0;
+                                    int total =widget.total;
+                                     discountedTotal =total - discount;
                                   },
-                                  child: const Text('Apply'),
+                                  child:  const Text('Apply',style: TextStyle(color: kwhite),),
                                 );
                               },
                             ),
                           ],
                         ),
                       kheight50,
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100),
-                        child: BlocConsumer<PlaceOrderBloc, PlaceOrderState>(
-                          listener: (context, state) {
-                            // TODO: implement listener
-                            if (state.cod != null) {
-                              if (state.cod!.codsuccess == true) {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        'Order Placed Successfully',
-                                        style: TextStyle(color: Colors.green),
-                                      ),
-                                      content:
-                                          Text('Thank you for your order!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      navPage()),
-                                              (route) => false,
-                                            );
-                                          },
-                                          child: Text('OK'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            }
-                          },
-                          builder: (context, state) {
-                            return ElevatedButton(
-                              style: const ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Colors.redAccent),
-                              ),
-                              onPressed: () {
-                                if (selectedPaymentMethod == 'cashondelivery') {
-                                  context.read<PlaceOrderBloc>().add(
-                                      PlaceOrderEvent.placeOrder(
-                                          'cod', discount, widget.catDiscount));
-                                } else if (selectedPaymentMethod ==
-                                    'razorpay') {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PlaceOrderWithRazorPay(
-                                          total: widget.total,
-                                          discount: discount,
-                                          catDiscount: widget.catDiscount,
-                                        ),
-                                      ));
-                                }
-                              },
-                              child: Text(
-                                'Continue',
-                                style: textstyle3,
-                              ),
+                      Row(
+                        children: [
+                          BlocBuilder<CouponBloc, CouponState>(
+                            builder: (context, state) {
+                              return Text(
+                              'Total: ₹${discountedTotal<0?1: discountedTotal.toString()}',
+                              style: textstyle1,
                             );
-                          },
-                        ),
+                            },
+                          ),
+
+                          Spacer(),
+                          BlocConsumer<PlaceOrderBloc, PlaceOrderState>(
+                            listener: (context, state) {
+                              // TODO: implement listener
+                              if (state.cod != null) {
+                                if (state.cod!.codsuccess == true) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text(
+                                          'Order Placed Successfully',
+                                          style: TextStyle(color: Colors.green),
+                                        ),
+                                        content:
+                                            const Text('Thank you for your order!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pushAndRemoveUntil(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const navPage()),
+                                                (route) => false,
+                                              );
+                                            },
+                                            child: const Text('OK'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              }
+                            },
+                            builder: (context, state) {
+                              return ElevatedButton(
+                                style: const ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStatePropertyAll(baseColor),
+                                ),
+                                onPressed: () {
+                                  if (selectedPaymentMethod == 'cashondelivery') {
+                                    context.read<PlaceOrderBloc>().add(
+                                        PlaceOrderEvent.placeOrder(
+                                            'cod', discount, widget.catDiscount));
+                                  } else if (selectedPaymentMethod ==
+                                      'razorpay') {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PlaceOrderWithRazorPay(
+                                            total: widget.total,
+                                            discount: discount,
+                                            catDiscount: widget.catDiscount,
+                                            discountedTotal: discountedTotal,
+                                          ),
+                                        ));
+                                  }
+                                },
+                                child: Text(
+                                  'Continue',
+                                  style: textstyle3,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),

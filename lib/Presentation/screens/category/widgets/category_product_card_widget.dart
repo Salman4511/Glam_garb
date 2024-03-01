@@ -38,7 +38,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
           width: widget.width,
           height: 250,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(baseUrl + widget.imgurl))),
@@ -114,8 +114,8 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(30),
                     bottomRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30)),
-                color: Colors.white.withOpacity(0.8)),
+                    bottomLeft: Radius.circular(10)),
+                color: baseColor.withOpacity(0.9)),
             // color: Colors.amber,
             width: 100,
             height: 55,
@@ -124,14 +124,21 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    '   ${widget.productName}',
-                    style: textstyle1,
+                    ' ${widget.productName}',
+                    style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,fontFamily: 'Courier'),
                     overflow: TextOverflow.ellipsis,
                   ),
                   Row(children: [
                     Text(
-                      '   ₹${widget.salePrice.toString()}',
-                      style: textstyle1,
+                      ' ₹${widget.salePrice.toString()}',
+                      style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Courier')
                     ),
                   ])
                 ]),

@@ -37,20 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Colors.black,
+          // backgroundColor: Colors.black,
           body: SafeArea(
               child: ListView(children: [
-            const Main_app_bar(),
-            const SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(left: 8,right: 8),
+              child: const Main_app_bar(),
             ),
+            kheight,
             Padding(
               padding: EdgeInsets.all(10.0),
               child: BlocBuilder<CategoryBloc, CategoryState>(
                 builder: (context, state) {
                   return CupertinoSearchTextField(
                     controller: searchController,
-                    backgroundColor: Colors.white,
+                    // backgroundColor: Colors.white,
                     placeholder: "Search Product",
                     onChanged: (value) {
                       context.read<CategoryBloc>().add(
@@ -110,6 +111,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: Column(
                           children: [
+                            kheight
+                            ,
                             CircleAvatar(
                               radius: 35,
                               backgroundImage: NetworkImage(baseUrl +
@@ -129,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Stack(children: [
               Column(
                 children: [
+                  kheight20,
                   SizedBox(
                     height: 300,
                     child: FutureBuilder(
@@ -165,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            ),
                       ),
                     ],
                   ),

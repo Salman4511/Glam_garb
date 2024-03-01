@@ -33,17 +33,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: kblackcolor,
+          // backgroundColor: kblackcolor,
           body: Column(
             children: [
+              
               kheight50,
+              Row(
+                children: [
+                  kwidth,
+                  Text(
+                    '  Categories',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
               BlocBuilder<CategoryBloc, CategoryState>(
                 builder: (context, state) {
                   return Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: CupertinoSearchTextField(
                       controller: searchController,
-                      backgroundColor: Colors.white,
+                      // backgroundColor: Colors.white,
                       placeholder: "Search Product, Brand, Category",
                       onChanged: (value) {
                         context.read<CategoryBloc>().add(
@@ -58,10 +71,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   );
                 },
               ),
-              kheight20,
+              kheight,
               // Choice Chips with padding
+               
               Wrap(
-                spacing: 8.0,
+                spacing: 12.0,
                 children: [
                   BuildChoiceChip(
                     label: 'All',
@@ -91,7 +105,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   kwidth,
                   kwidth,
                   CircleAvatar(
-                    backgroundColor: kwhite,
+                    backgroundColor: baseColor,
                     radius: 23,
                     child: IconButton(
                       onPressed: () => _showFilterDialog(filterOptions),
@@ -106,11 +120,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      buildProductList(),
-                    ],
-                  ),
+                  child: buildProductList(),
                 ),
               ),
             ],
@@ -145,60 +155,85 @@ class _CategoryScreenState extends State<CategoryScreen> {
           filterOptions.selectedBrands);
     }
 
-    return FutureBuilder<CategoryModel>(
-      future: future,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else if (!snapshot.hasData || snapshot.data?.products == null) {
-          return const Text('No products found.');
-        } else {
-          final products = snapshot.data!;
-          return Column(
-            children: [
-              kheight,
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 20,
-                  crossAxisCount: 2,
-                ),
-                itemCount: products.products!.length,
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductDetails(
-                          title: products.products![index].productName ?? '',
-                          descr: products.products![index].description ?? '',
-                          price: products.products![index].salePrice ?? 0,
-                          imgurl: products.products![index].images ?? [],
-                          id: products.products![index].id ?? '',
-                          sizes: products.products![index].sizes ?? [],
-                          colors: products.products![index].color ?? [],
-                        ),
+    return Column(
+      children: [
+        kheight,
+        selectedCategory == 'all'?Row(
+          children: [
+            Text('   All Products',
+            style: textstyle1,
+            ),
+          ],
+        ):selectedCategory == 'men'?
+        Row(
+          children: [
+            Text('   Mens Products',
+                        style: textstyle1,
+            ),
+          ],
+        ):Row(
+          children: [
+            Text("   Womens Products",
+                        style: textstyle1,
+            ),
+          ],
+        ),
+        FutureBuilder<CategoryModel>(
+          future: future,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (!snapshot.hasData || snapshot.data?.products == null) {
+              return const Text('No products found.');
+            } else {
+              final products = snapshot.data!;
+              return Column(
+                children: [
+                  // kheight,
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 20,
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: products.products!.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductDetails(
+                              title: products.products![index].productName ?? '',
+                              descr: products.products![index].description ?? '',
+                              price: products.products![index].salePrice ?? 0,
+                              imgurl: products.products![index].images ?? [],
+                              id: products.products![index].id ?? '',
+                              sizes: products.products![index].sizes ?? [],
+                              colors: products.products![index].color ?? [],
+                            ),
+                          ),
+                        );
+                      },
+                      child: ProductCardWidget(
+                        width: 180,
+                        // Pass necessary data to ProductCard widget
+                        id: products.products![index].id ?? '',
+                        imgurl: products.products![index].images![0].url ?? '',
+                        salePrice: products.products![index].salePrice!,
+                        productName: products.products![index].productName ?? '',
+                        productId: '',
                       ),
-                    );
-                  },
-                  child: ProductCardWidget(
-                    width: 180,
-                    // Pass necessary data to ProductCard widget
-                    id: products.products![index].id ?? '',
-                    imgurl: products.products![index].images![0].url ?? '',
-                    salePrice: products.products![index].salePrice!,
-                    productName: products.products![index].productName ?? '',
-                    productId: '',
+                    ),
                   ),
-                ),
-              ),
-            ],
-          );
-        }
-      },
+                ],
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 
