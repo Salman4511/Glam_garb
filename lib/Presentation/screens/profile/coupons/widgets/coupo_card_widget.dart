@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glam_garb/shared/constants/constants.dart';
 
 class CouponCardWidget extends StatefulWidget {
   final String couponName;
@@ -30,6 +31,7 @@ class _CouponCardWidgetState extends State<CouponCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: baseColor.shade100,
         elevation: 4,
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: ListTile(

@@ -18,10 +18,10 @@ class _ReturnOrderScreenState extends State<ReturnOrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
-        backgroundColor: kblackcolor,
-        title: Text('My Orders', style: textstyleTitle),
+        backgroundColor: kwhite,
+        title: Text('Return Order', style: textstyleTitle),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -29,7 +29,7 @@ class _ReturnOrderScreenState extends State<ReturnOrderScreen> {
             },
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: kwhite,
+              
             )),
       ),
       body: Center(
@@ -40,7 +40,7 @@ class _ReturnOrderScreenState extends State<ReturnOrderScreen> {
               width: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: kwhite,
+                color: baseColor.shade100,
               ),
               child: Padding(
                 padding: const EdgeInsets.only(left: 10),
@@ -116,7 +116,7 @@ class _ReturnOrderScreenState extends State<ReturnOrderScreen> {
                     }
                   },
                   style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                      backgroundColor: MaterialStatePropertyAll(baseColor)),
                   child: Text('Submit Return Request', style: textstyle3),
                 );
               },
@@ -126,7 +126,7 @@ class _ReturnOrderScreenState extends State<ReturnOrderScreen> {
               padding: EdgeInsets.all(8.0),
               child: Text(
                 'Note: Please make sure the item is in its original condition with all tags and packaging intact.',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: kblackcolor),
               ),
             ),
           ],

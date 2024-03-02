@@ -18,7 +18,7 @@ class _CouponsScreenState extends State<CouponsScreen> {
   Widget build(BuildContext context) {
     ProfileRepo repo = ProfileRepo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -87,13 +87,13 @@ class _CouponsScreenState extends State<CouponsScreen> {
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,
-                        color: kwhite,
+                        // color: kwhite,
                       ),
                     ),
                     kwidth100,
                     Text(
                       'Coupons',
-                      style: textstyle6,
+                      style: textstyle1,
                     )
                   ],
                 ),

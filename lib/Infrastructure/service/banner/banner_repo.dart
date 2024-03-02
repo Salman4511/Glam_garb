@@ -1,16 +1,36 @@
 import 'package:dio/dio.dart';
+import 'package:glam_garb/Infrastructure/service/auth/auth_repo.dart';
 import 'package:glam_garb/domain/response_models/banner_model/banner_get_model/banner_get_model.dart';
 
 class BannerRepo {
-  Future<BannerGetModel> getBanner() async {
-    try {
-      final dio = Dio(BaseOptions(
-        headers: {
-          'Cookie':
-              'jwtAdmin=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTZhNDg5YWQxM2Q1YWQ3MTllMjMyOSIsImlhdCI6MTcwOTEwMzU5NiwiZXhwIjoxNzA5MzYyNzk2fQ.Ig_8RlrICadsz671i6fHoeQHYa0g7QxgZa33PQpSDXA',
-        },
-      ));
 
+  late AuthRepo repo;
+  String? adminAuthToken;
+  late String _jwtAdmin;
+  late Dio dio;
+  BannerRepo() {
+    _jwtAdmin = "";
+    repo = AuthRepo();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    adminAuthToken = await repo.getAdminAuthToken();
+    _jwtAdmin = "jwtAdmin=$adminAuthToken";
+    dio = Dio(BaseOptions(headers: {'Cookie':_jwtAdmin}));
+  }
+
+
+    Future<BannerGetModel> getBanner() async {
+    if (_jwtAdmin.isEmpty) {
+      await initialize();
+    }
+
+    print('jwt------->$_jwtAdmin');
+    try {
+     
+    //  final  dio = Dio(BaseOptions(headers: {'Cookie': _jwtAdmin}));
+     print('--//$_jwtAdmin');
       final response = await dio.get("http://10.0.2.2:3000/admin/banner");
 
       if (response.statusCode == 200) {

@@ -4,12 +4,17 @@ import 'package:glam_garb/Domain/response_models/sign_up_model/check_otp/check_o
 import 'package:glam_garb/Domain/response_models/sign_up_model/send_otp/send_otp.dart';
 import 'package:glam_garb/Domain/response_models/sign_up_model/user_register/user_register.dart';
 import 'package:glam_garb/domain/response_models/LoginModel/user_login/user_login.dart';
+import 'package:glam_garb/domain/response_models/admin_login/admin_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
   static const String AUTH_ID_KEY = 'auth_id';
 
   String? _authId;
+
+   static const String ADMIN_AUTH_ID_KEY = 'admin_auth_id';
+
+  String? _adminauthId;
 
   Future<void> _saveAuthId(String authId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -26,6 +31,20 @@ class AuthRepo {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(AUTH_ID_KEY);
   }
+
+ 
+
+  Future<void> _saveAdminAuthId(String adminauthId) async {
+    SharedPreferences prefss = await SharedPreferences.getInstance();
+    await prefss.setString(ADMIN_AUTH_ID_KEY, adminauthId);
+    _adminauthId = adminauthId;
+  }
+
+  Future<void> _loadAdminAuthId() async {
+    SharedPreferences prefss = await SharedPreferences.getInstance();
+    _adminauthId = prefss.getString(ADMIN_AUTH_ID_KEY);
+  }
+
 
   Future<UserLogin> singIn(String email, String password) async {
     UserLogin logiUser = UserLogin(token: "");
@@ -62,6 +81,8 @@ class AuthRepo {
     }
     return _authId;
   }
+
+ 
 
   Future<UserRegister> signUp(
       String name, String email, int phone, String password) async {
@@ -138,5 +159,33 @@ class AuthRepo {
       print('error occured on logout --> $e');
     }
     return model;
+  }
+
+  Future<AdminLogin> adminSignIn(String email, String password) async {
+    AdminLogin logiAdmin = AdminLogin(token:"");
+    try {
+      final response = await Dio().post("http://10.0.2.2:3000/admin/login",
+          data: <String, dynamic>{"email": email, "password": password});
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        print("the response get is oky on addd");
+        logiAdmin = AdminLogin.fromJson(response.data);
+        await _saveAdminAuthId(logiAdmin.token!);
+        return logiAdmin;
+      } else {
+        print("the response get is not oky");
+        return logiAdmin;
+      }
+    } catch (e) {
+      print("the response admin get some error $e");
+      return logiAdmin;
+    }
+  }
+
+   Future<String?> getAdminAuthToken() async {
+    // If authId is not loaded, load it from SharedPreferences asynchronously
+    if (_adminauthId == null) {
+      await _loadAdminAuthId();
+    }
+    return _adminauthId;
   }
 }

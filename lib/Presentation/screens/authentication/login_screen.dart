@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
+import 'package:glam_garb/infrastructure/service/auth/auth_repo.dart';
 import 'package:glam_garb/presentation/screens/NavBar/nav_bar.dart';
 import 'package:glam_garb/presentation/screens/authentication/signup_page.dart';
 import 'package:lottie/lottie.dart';
@@ -22,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    AuthRepo repo = AuthRepo();
     return Scaffold(
         body: Padding(
       padding: EdgeInsets.only(top: size.height * 0.09),
@@ -33,12 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 EdgeInsets.only(left: 30, right: 30, top: size.height * 0.1),
             child: Column(
               children: [
-                Lottie.network(
-                    'https://lottie.host/a927e874-1e4f-4776-ba71-552d205e9714/galJVLi2L1.json',
-                    repeat: true,
-                    reverse: true,
-                    height: 200,
-                    fit: BoxFit.cover),
+                // Lottie.network(
+                //     'https://lottie.host/a927e874-1e4f-4776-ba71-552d205e9714/galJVLi2L1.json',
+                //     repeat: true,
+                //     reverse: true,
+                //     height: 200,
+                //     fit: BoxFit.cover),
                 // SizedBox(
                 //   height: 150,
                 //   width: 200,
@@ -162,6 +164,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context.read<AuthBloc>().add(
                                       AuthBlocEvent.signIn(emailcontroller.text,
                                           passwordcontroller.text));
+
+                                  repo.adminSignIn('admin@gmail.com', 'admin@123');
                                 }
                               },
                               icon: isloading

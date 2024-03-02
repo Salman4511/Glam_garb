@@ -19,17 +19,17 @@ class _ManageAddressScreenState extends State<ManageAddressScreen> {
   Widget build(BuildContext context) {
     ProfileRepo repo = ProfileRepo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
-          color: kwhite,
+          // color: kwhite,
         ),
         title: Text(
           'Manage Address',
-          style: textstyle3,
+          style: textstyle1,
         ),
       ),
       body: Stack(
@@ -64,6 +64,7 @@ class _ManageAddressScreenState extends State<ManageAddressScreen> {
                                   setState(() {});
                                 },
                                 child: Card(
+                                  color: baseColor.shade100,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
@@ -218,7 +219,7 @@ class _ManageAddressScreenState extends State<ManageAddressScreen> {
                   style: textstyle3,
                 ),
                 style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                    backgroundColor: MaterialStatePropertyAll(baseColor)),
               )),
         ],
       ),

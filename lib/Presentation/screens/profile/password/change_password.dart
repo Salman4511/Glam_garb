@@ -53,9 +53,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
         title: Text('Change Password', style: textstyleTitle),
         centerTitle: true,
         leading: IconButton(
@@ -64,7 +64,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: kwhite,
+              // color: kwhite,
             )),
       ),
       body: Padding(
@@ -74,11 +74,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           children: [
             Text(
               'Enter the fields to',
-              style: textstyle3,
+              style: textstyle1,
             ),
             Text(
               'Change your password...',
-              style: textstyle3,
+              style: textstyle1,
             ),
             kheight50,
             TextField(
@@ -151,7 +151,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       style: textstyle3,
                     ),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                        backgroundColor: MaterialStatePropertyAll(baseColor)),
                   ),
                 );
               },

@@ -14,9 +14,9 @@ class _WalletState extends State<Wallet> {
   Widget build(BuildContext context) {
     ProfileRepo repo = ProfileRepo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
         title: Text('My Wallet', style: textstyleTitle),
         centerTitle: true,
         leading: IconButton(
@@ -25,7 +25,7 @@ class _WalletState extends State<Wallet> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: kwhite,
+              // color: kwhite,
             )),
       ),
       body: Row(
@@ -40,7 +40,7 @@ class _WalletState extends State<Wallet> {
                   return Container(
                     height: 170,
                     width: 300,
-                    color: kwhite,
+                    color: baseColor.shade100,
                     child: Column(
                       children: [
                         kheight20,
@@ -73,11 +73,11 @@ class _WalletState extends State<Wallet> {
                               },
                               child: Text(
                                 'Back',
-                                style: textstyle4,
+                                style: textstyle3,
                               ),
                               style: ButtonStyle(
                                   backgroundColor:
-                                      MaterialStatePropertyAll(Colors.amber)),
+                                      MaterialStatePropertyAll(baseColor)),
                             ),
                             kwidth
                           ],

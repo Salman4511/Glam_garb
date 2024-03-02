@@ -233,6 +233,13 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w800
                                               ) ,),
+                                              Text(
+                                            'Quanity:${checkOut.quantityy![index]}',
+                                            style: const TextStyle(
+                                                fontFamily: 'Courier',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w800),
+                                          ),
                                           Text(
                                             '₹${checkOut.productsInCart![index].salePrice}',
                                             style: const TextStyle(
@@ -258,7 +265,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
               Column(
                 children: [
                   const SizedBox(
-                    height: 341,
+                    height: 340,
                   ),
                   Container(
                     height: 60,

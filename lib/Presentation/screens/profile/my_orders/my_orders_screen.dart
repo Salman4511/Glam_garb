@@ -19,16 +19,16 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
   Widget build(BuildContext context) {
     ProfileRepo repo = ProfileRepo();
     return Scaffold(
-      backgroundColor: kblackcolor,
+      // backgroundColor: kblackcolor,
       appBar: AppBar(
-        backgroundColor: kblackcolor,
+        backgroundColor: kwhite,
         title: Text('My Orders', style: textstyleTitle),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios,color: kwhite,)),
+            icon: Icon(Icons.arrow_back_ios,)),
       ),
       body: Stack(
         children: [
