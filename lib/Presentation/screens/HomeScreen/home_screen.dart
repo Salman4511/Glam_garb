@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   FilterOptions filterOptions = FilterOptions();
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     CategoryRepo repo = CategoryRepo();
     BannerRepo bannerRepo = BannerRepo();
     return BlocBuilder<CategoryBloc, CategoryState>(

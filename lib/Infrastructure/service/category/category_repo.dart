@@ -8,7 +8,7 @@ class CategoryRepo {
       final dio = Dio();
 
       final response = await dio.get(
-          "http://10.0.2.2:3000/allproducts?search=$search",
+          "https://www.elegancestores.online/allproducts?search=$search",
           queryParameters: {
             'colors': colors,
             'sizes': size, // Assuming colors is a List<String>sheri
@@ -37,7 +37,7 @@ class CategoryRepo {
       final dio = Dio();
 
       final response = await dio
-          .get("http://10.0.2.2:3000/men?search=$search", queryParameters: {
+          .get("https://www.elegancestores.online/men?search=$search", queryParameters: {
         'colors': colors, // Assuming colors is a List<String>sheri
         'categories': categories, // Assuming category is a List<String>sheri
         'brands': brands, // Assuming brand is a List<String>sheri
@@ -61,7 +61,7 @@ class CategoryRepo {
       final dio = Dio();
 
       final response = await dio
-          .get("http://10.0.2.2:3000/women?search=$search", queryParameters: {
+          .get("https://www.elegancestores.online/women?search=$search", queryParameters: {
         'colors': colors, // Assuming colors is a List<String>sheri
         'categories': categories, // Assuming category is a List<String>sheri
         'brands': brands, // Assuming brand is a List<String>sheri

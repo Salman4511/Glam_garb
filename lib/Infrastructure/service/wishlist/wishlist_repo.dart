@@ -30,7 +30,7 @@ class WishListRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.post("http://10.0.2.2:3000/wishlist-add",
+      final response = await dio.post("https://www.elegancestores.online/wishlist-add",
           data: <String, dynamic>{"productId": id});
 
       if (response.statusCode == 200) {
@@ -53,7 +53,7 @@ class WishListRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
-        "http://10.0.2.2:3000/wishlist",
+        "https://www.elegancestores.online/wishlist",
       );
 
       if (response.statusCode == 200) {
@@ -76,7 +76,7 @@ class WishListRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
-          "http://10.0.2.2:3000/wishlist/deleteItem?itemId=$id",
+          "https://www.elegancestores.online/wishlist/deleteItem?itemId=$id",
           data: <String, dynamic>{"itemId": id});
 
       if (response.statusCode == 200) {
@@ -99,7 +99,7 @@ class WishListRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
-          "http://10.0.2.2:3000/wishlist-to-bag?id=$id",
+          "https://www.elegancestores.online/wishlist-to-bag?id=$id",
           data: <String, dynamic>{"id": id});
 
       if (response.statusCode == 200) {

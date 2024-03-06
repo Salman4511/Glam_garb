@@ -15,6 +15,15 @@ const kwidth100 = SizedBox(
 const kwidth5 = SizedBox(
   width: 5,
 );
+
+
+const kwidth07 = SizedBox(
+  width: 07,
+);
+
+const kwidth50 = SizedBox(
+  width: 50,
+);
 const kwhite = Colors.white;
 final buttoncolorblue = Colors.blueAccent[700];
 const buttoncolorWhite = Colors.white;
@@ -85,6 +94,24 @@ TextStyle textstyle6 =
 
   TextStyle textstyleForRequested =
     TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue);
+
+    TextStyle ktextstyle7 = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    overflow: TextOverflow.fade,
+    color: kblackcolor);
+
+TextStyle ktextstyle8 = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    overflow: TextOverflow.fade,
+    color: kblackcolor);
+
+TextStyle ktextstyle9 = const TextStyle(
+    fontSize: 15,
+    // fontWeight: FontWeight.bold,
+    overflow: TextOverflow.fade,
+    color: kblackcolor);
 
 
 // buttonStyle

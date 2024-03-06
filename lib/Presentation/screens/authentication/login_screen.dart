@@ -4,6 +4,7 @@ import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
 import 'package:glam_garb/infrastructure/service/auth/auth_repo.dart';
 import 'package:glam_garb/presentation/screens/NavBar/nav_bar.dart';
 import 'package:glam_garb/presentation/screens/authentication/signup_page.dart';
+import 'package:glam_garb/shared/constants/constants.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -47,9 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 //   child: Image.network(
                 //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Y5YS7_OytcS_zErPHrL-M0U_GZbsChykXiWnzS0b_M9tjyLqwyKY6Ujom9hTANI_BzY&usqp=CAU'),
                 // ),
-                const SizedBox(
-                  height: 40,
+                const Text('Welcome back,',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
+                const Text(
+                  ' fashionista! ',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
                 ),
+               kheight90,
                 TextFormField(
                     controller: emailcontroller,
                     validator: (text) {
@@ -123,18 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onEditingComplete: () {
                       FocusScope.of(context).unfocus();
                     }),
-                // Row(
-                //   children: [
-                //     TextButton(
-                //         onPressed: () {
-                //           Navigator.push(
-                //               context,
-                //               MaterialPageRoute(
-                //                   builder: (context) => navPage()));
-                //         },
-                //         child: const Text('forgot password?')),
-                //   ],
-                // ),
+              
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: BlocConsumer<AuthBloc, AuthBlocState>(
@@ -143,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (state.loginUser!.token != "") {
                           Navigator.pushReplacement(context, MaterialPageRoute(
                             builder: (context) {
-                              return navPage();
+                              return const navPage();
                             },
                           ));
                         }
@@ -157,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     builder: (context, state) {
                       return state.isLoading
-                          ? CircularProgressIndicator()
+                          ? const CircularProgressIndicator()
                           : ElevatedButton.icon(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {

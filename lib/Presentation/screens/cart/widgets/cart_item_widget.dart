@@ -33,7 +33,7 @@ class CartItemCard extends StatefulWidget {
 class _CartItemCardState extends State<CartItemCard> {
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     return SizedBox(
       height: 230,
       child: Column(

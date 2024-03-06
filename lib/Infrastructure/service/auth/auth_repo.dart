@@ -49,7 +49,7 @@ class AuthRepo {
   Future<UserLogin> singIn(String email, String password) async {
     UserLogin logiUser = UserLogin(token: "");
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/login",
+      final response = await Dio().post("https://www.elegancestores.online/login",
           data: <String, dynamic>{"email": email, "password": password});
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky");
@@ -89,7 +89,7 @@ class AuthRepo {
     UserRegister regUser = UserRegister(name: "");
 
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/register",
+      final response = await Dio().post("https://www.elegancestores.online/register",
           data: <String, dynamic>{
             "email": email,
             "name": name,
@@ -118,7 +118,7 @@ class AuthRepo {
   Future<SendOtp> sentOtp(String email) async {
     SendOtp otp = SendOtp();
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/send-otp",
+      final response = await Dio().post("https://www.elegancestores.online/send-otp",
           data: <String, dynamic>{"email": email});
       if (response.statusCode == 201 || response.statusCode == 200) {
         print('response is okk otp---->');
@@ -133,7 +133,7 @@ class AuthRepo {
   Future<CheckOtpModel> checkOtp(String recievedOtp) async {
     CheckOtpModel model = CheckOtpModel(message: "");
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/verify-otp",
+      final response = await Dio().post("https://www.elegancestores.online/verify-otp",
           data: <String, dynamic>{"otp": recievedOtp});
       if (response.statusCode == 200 || response.statusCode == 201) {
         print('recieved otp is valid');
@@ -149,7 +149,7 @@ class AuthRepo {
     LogoutModel model = LogoutModel(message: "");
     try {
       final response = await Dio().post(
-        "http://10.0.2.2:3000/logout",
+        "https://www.elegancestores.online/logout",
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         print('User logouted');
@@ -164,7 +164,7 @@ class AuthRepo {
   Future<AdminLogin> adminSignIn(String email, String password) async {
     AdminLogin logiAdmin = AdminLogin(token:"");
     try {
-      final response = await Dio().post("http://10.0.2.2:3000/admin/login",
+      final response = await Dio().post("https://www.elegancestores.online/admin/login",
           data: <String, dynamic>{"email": email, "password": password});
       if (response.statusCode == 201 || response.statusCode == 200) {
         print("the response get is oky on addd");

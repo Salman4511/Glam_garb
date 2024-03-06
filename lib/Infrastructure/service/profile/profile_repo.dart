@@ -41,7 +41,7 @@ class ProfileRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.post(
-          "http://10.0.2.2:3000/checkout/add-address",
+          "https://www.elegancestores.online/checkout/add-address",
           data: <String, dynamic>{
             "adname": name,
             "admobile": phone,
@@ -71,7 +71,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
       final response = await dio.get(
-        "http://10.0.2.2:3000/my/profile",
+        "https://www.elegancestores.online/my/profile",
       );
 
       if (response.statusCode == 200) {
@@ -93,7 +93,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.post("http://10.0.2.2:3000/profile/updateData",
+      final response = await dio.post("https://www.elegancestores.online/profile/updateData",
           data: <String, dynamic>{
             "profilename": name,
             "profilemobile": mobile,
@@ -118,7 +118,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.get("http://10.0.2.2:3000/my/address");
+      final response = await dio.get("https://www.elegancestores.online/my/address");
 
       if (response.statusCode == 200) {
         print('response ok on get address');
@@ -148,7 +148,7 @@ class ProfileRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio
-          .post("http://10.0.2.2:3000/editAddress", data: <String, dynamic>{
+          .post("https://www.elegancestores.online/editAddress", data: <String, dynamic>{
         "addressId": id,
         "adname": name,
         "admobile": phone,
@@ -178,7 +178,7 @@ class ProfileRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response =
-          await dio.get("http://10.0.2.2:3000/deleteAddress?addressid=$id");
+          await dio.get("https://www.elegancestores.online/deleteAddress?addressid=$id");
 
       if (response.statusCode == 200) {
         print('response ok on delete address');
@@ -198,7 +198,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.get("http://10.0.2.2:3000/my/orders");
+      final response = await dio.get("https://www.elegancestores.online/my/orders");
 
       if (response.statusCode == 200) {
         print('response ok on get orders');
@@ -219,7 +219,7 @@ class ProfileRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response =
-          await dio.get("http://10.0.2.2:3000/cancel-order?orderId=$orderId");
+          await dio.get("https://www.elegancestores.online/cancel-order?orderId=$orderId");
 
       if (response.statusCode == 200) {
         print('response ok on cancel orders');
@@ -239,7 +239,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.get("http://10.0.2.2:3000/my/wallet");
+      final response = await dio.get("https://www.elegancestores.online/my/wallet");
 
       if (response.statusCode == 200) {
         print('response ok on get wallet');
@@ -259,7 +259,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.get("http://10.0.2.2:3000/my/coupons");
+      final response = await dio.get("https://www.elegancestores.online/my/coupons");
 
       if (response.statusCode == 200) {
         print('response ok on get coupons');
@@ -279,7 +279,7 @@ class ProfileRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.post("http://10.0.2.2:3000/profile/change-pwd",
+      final response = await dio.post("https://www.elegancestores.online/profile/change-pwd",
           data: <String, dynamic>{
             "upassword": newPassword,
           });
@@ -303,7 +303,7 @@ class ProfileRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response =
-          await dio.post("http://10.0.2.2:3000/requestReturn",
+          await dio.post("https://www.elegancestores.online/requestReturn",
           data: <String, dynamic>{
         "orderId": orderId,
         "returnReason":reason

@@ -17,7 +17,7 @@ class MainCard extends StatefulWidget {
 class _MainCardState extends State<MainCard> {
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/banner/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/banner/';
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 7),
       width: widget.width,

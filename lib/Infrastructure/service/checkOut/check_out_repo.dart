@@ -25,7 +25,7 @@ class CheckOutRepo {
   }
 
   // Future<String> getCookie() async {
-  //   final response = await Dio().post("http://10.0.2.2:3000/login");
+  //   final response = await Dio().post("https://www.elegancestores.online/login");
   //   return response.data.map['token'].toString();
   // }
 
@@ -36,7 +36,7 @@ class CheckOutRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
       final response = await dio.get(
-        "http://10.0.2.2:3000/checkout",
+        "https://www.elegancestores.online/checkout",
       );
 
       if (response.statusCode == 200) {
@@ -58,7 +58,7 @@ class CheckOutRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.post("http://10.0.2.2:3000/selectAddress",
+      final response = await dio.post("https://www.elegancestores.online/selectAddress",
           data: <String, dynamic>{"selectedAddressId": id});
 
       if (response.statusCode == 200) {
@@ -80,7 +80,7 @@ class CheckOutRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
-      final response = await dio.post("http://10.0.2.2:3000/applycoupon",
+      final response = await dio.post("https://www.elegancestores.online/applycoupon",
           data: <String, dynamic>{"total": total, "couponcode": couponCode});
 
       if (response.statusCode == 200) {
@@ -103,7 +103,7 @@ class CheckOutRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio
-          .post("http://10.0.2.2:3000/orderconfirm", data: <String, dynamic>{
+          .post("https://www.elegancestores.online/orderconfirm", data: <String, dynamic>{
         "paymentMethod": paymentMethod,
         "discount": discount,
         "categorydiscount": categorydiscount
@@ -129,7 +129,7 @@ class CheckOutRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio
-          .post("http://10.0.2.2:3000/orderconfirm", data: <String, dynamic>{
+          .post("https://www.elegancestores.online/orderconfirm", data: <String, dynamic>{
         "paymentMethod": paymentMethod,
         "discount": discount,
         "categorydiscount": categorydiscount

@@ -43,7 +43,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     return Scaffold(
       // backgroundColor: Colors.black,
       body: Stack(

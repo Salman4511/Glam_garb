@@ -32,7 +32,7 @@ class CartRepo {
     print('jwt------->$_jwt');
     try {
       final response = await dio.get(
-        "http://10.0.2.2:3000/cart",
+        "https://www.elegancestores.online/cart",
       );
 
       if (response.statusCode == 200) {
@@ -56,7 +56,7 @@ class CartRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.post(
-          "http://10.0.2.2:3000/cart/updateQuantity",
+          "https://www.elegancestores.online/cart/updateQuantity",
           data: <String, dynamic>{
             "itemId": id,
             "operation": operation,
@@ -83,7 +83,7 @@ class CartRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
-        "http://10.0.2.2:3000/cart/deleteItem?itemId=$id",
+        "https://www.elegancestores.online/cart/deleteItem?itemId=$id",
       );
 
       if (response.statusCode == 200) {
@@ -106,7 +106,7 @@ class CartRepo {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
 
       final response = await dio.get(
-          "http://10.0.2.2:3000/cart/toWishlist?itemId=$id",
+          "https://www.elegancestores.online/cart/toWishlist?itemId=$id",
           data: <String, dynamic>{"itemId": id});
 
       if (response.statusCode == 200) {
@@ -128,7 +128,7 @@ class CartRepo {
     try {
       // final dio = Dio(BaseOptions(headers: {'Cookie': _jwt}));
       final response = await dio.get(
-        "http://10.0.2.2:3000/checkout",
+        "https://www.elegancestores.online/checkout",
       );
 
       if (response.statusCode == 200) {

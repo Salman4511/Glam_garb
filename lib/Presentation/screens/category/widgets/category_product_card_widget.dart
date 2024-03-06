@@ -30,7 +30,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
   WishListRepo repo = WishListRepo();
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     return Stack(
       children: [
         Container(

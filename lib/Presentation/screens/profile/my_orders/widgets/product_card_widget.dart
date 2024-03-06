@@ -35,7 +35,7 @@ class OrderProductCard extends StatefulWidget {
 class _OrderProductCardState extends State<OrderProductCard> {
   @override
   Widget build(BuildContext context) {
-    var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
+    var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     return Card(
       color: baseColor.shade100,
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),

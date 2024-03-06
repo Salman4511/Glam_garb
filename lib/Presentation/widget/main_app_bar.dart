@@ -31,7 +31,8 @@ class _Main_app_barState extends State<Main_app_bar> {
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
-                      'assets/images/Orange Black Minimalist Modern Letter G Giant Creative Logo.png'))),
+                      'assets/images/0e2f068bee19c8f3f79826b2b4766dd4.png'
+                      ))),
         ),
         const Spacer(),
         InkWell(

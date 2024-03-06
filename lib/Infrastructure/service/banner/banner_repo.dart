@@ -31,7 +31,7 @@ class BannerRepo {
      
     //  final  dio = Dio(BaseOptions(headers: {'Cookie': _jwtAdmin}));
      print('--//$_jwtAdmin');
-      final response = await dio.get("http://10.0.2.2:3000/admin/banner");
+      final response = await dio.get("https://www.elegancestores.online/admin/banner");
 
       if (response.statusCode == 200) {
         print(response.data);
