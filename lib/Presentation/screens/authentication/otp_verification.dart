@@ -5,6 +5,7 @@ import 'package:glam_garb/Application/auth/auth_bloc_bloc.dart';
 import 'package:glam_garb/Presentation/screens/NavBar/nav_bar.dart';
 
 import 'package:glam_garb/Shared/constants/constants.dart';
+import 'package:glam_garb/presentation/screens/authentication/login_screen.dart';
 import 'package:pinput/pinput.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -155,12 +156,12 @@ class _OTPScreenState extends State<OTPScreen> {
                         alignment: Alignment.centerRight,
                         child: BlocConsumer<AuthBloc, AuthBlocState>(
                           listener: (context, state) {
-                            if (state.verifyOtp != null) {
+                            if (state.verifyOtp != null&&state.user!=null) {
                               if (state.verifyOtp!.message != "") {
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(
                                   builder: (context) {
-                                    return navPage();
+                                    return const LoginScreen();
                                   },
                                 ));
                               } else {
@@ -221,7 +222,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                   context.read<AuthBloc>().add(
                                       AuthBlocEvent.checkOtp(
                                           otpcontroller.text));
-                                  if (state.verifyOtp!.message != "") {
+                                  if (state.verifyOtp!.message != "Invalid OTP") {
                                     print('entered inside');
                                     context.read<AuthBloc>().add(
                                         AuthBlocEvent.signUp(

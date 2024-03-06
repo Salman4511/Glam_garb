@@ -100,7 +100,7 @@ class AuthRepo {
       if (response.statusCode == 201 || response.statusCode == 200) {
         print('response okk on signupp--->>');
         regUser = UserRegister.fromJson(response.data);
-        await _saveAuthId(regUser.id!);
+        // await _saveAuthId(regUser.id!);
         print('authid saved');
         return regUser;
       } else if (response.statusCode == 309) {
