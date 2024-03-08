@@ -26,6 +26,7 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     CheckOutRepo repo = CheckOutRepo();
 
     return Scaffold(
@@ -77,6 +78,7 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
             children: [
               Column(
                 children: [
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
@@ -91,7 +93,7 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                           } else if (snapshot.hasError) {
                             return Text('Error: ${snapshot.error}');
                           } else if (!snapshot.hasData ||
-                              snapshot.data?.productsInCart == null) {
+                              snapshot.data?.userData == null) {
                             return Center(
                               child: Text(
                                 'No items found.',
@@ -113,7 +115,8 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                             return ListView.builder(
                               itemCount: 1,
                               itemBuilder: (context, index) {
-                                return GestureDetector(
+                                return 
+                                 GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       selectedCardIndex = index;
@@ -330,7 +333,7 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                 ],
               ),
               Positioned(
-                top: 550,
+                top: size.height*0.65,
                 child: CheckOutBottomButtonsWidget(
                   selectedAddressId: selectedAddressId,
                   name: name,

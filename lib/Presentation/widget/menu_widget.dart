@@ -47,9 +47,13 @@ class MenuWidget extends StatelessWidget {
                           user![0].name ?? 'user',
                           style: TextStyle(fontSize: 20),
                         ),
-                        Text(
-                          user[0].email ?? '',
-                          style: TextStyle(fontSize: 20),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            user[0].email ?? '',
+                            style: TextStyle(fontSize: 20),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         )
                       ],
                     ),

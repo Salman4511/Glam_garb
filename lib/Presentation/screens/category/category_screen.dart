@@ -103,7 +103,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ),
                   kwidth,
                   kwidth,
-                  kwidth,
+                  // kwidth,
                   CircleAvatar(
                     backgroundColor: baseColor,
                     radius: 23,

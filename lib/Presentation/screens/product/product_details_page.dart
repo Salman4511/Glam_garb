@@ -43,13 +43,14 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     return Scaffold(
       // backgroundColor: Colors.black,
       body: Stack(
         children: [
           Positioned(
-            top: 520,
+            top: size.height*0.62,
             left: 16,
             child: SizedBox(
               child: SingleChildScrollView(
@@ -57,12 +58,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+                      
                       widget.title,
                       style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                           fontFamily: "Courier"
                           ),
+                          overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(
                       width: 300,
@@ -148,8 +151,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Row(
                       children: [
-                        const SizedBox(
-                          width: 55,
+                         SizedBox(
+                          width: size.width*0.11
                         ),
                         BlocConsumer<WishlistBloc, WishlistState>(
                           listener: (context, state) {
@@ -190,9 +193,9 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
 
           Positioned(
-            left: 82,
+            left: size.width*0.128,
             child: Container(
-              height: 500,
+              height: 450,
               width: 310,
               decoration: const BoxDecoration(
                 borderRadius:

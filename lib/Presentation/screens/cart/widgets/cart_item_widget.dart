@@ -228,13 +228,18 @@ class _CartItemCardState extends State<CartItemCard> {
             child: Row(
               children: [
                 kwidth5,
-                Text(
-                  widget.itemName,
-                  style: const TextStyle(
-                      // color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 20,
-                      fontFamily: 'Courier'),
+                SizedBox(
+                  width: 150,
+                  child: Text(
+                
+                    widget.itemName,
+                    style: const TextStyle(
+                        // color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 20,
+                        fontFamily: 'Courier'),
+                        overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 const Spacer(),
                 Container(

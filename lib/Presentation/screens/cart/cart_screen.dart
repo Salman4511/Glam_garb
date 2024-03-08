@@ -21,6 +21,7 @@ class _CartScreenState extends State<CartScreen> {
   bool visible2 = true;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     CartRepo repo = CartRepo();
 
     return Scaffold(
@@ -348,8 +349,8 @@ class _CartScreenState extends State<CartScreen> {
           },
         ),
         Positioned(
-          top: 580,
-          left: 85,
+          top: size.height*0.7,
+          left: size.width*0.2,
           child: Column(
             children: [
               BlocConsumer<CheckOutBloc, CheckOutState>(

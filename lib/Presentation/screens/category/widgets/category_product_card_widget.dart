@@ -30,6 +30,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
   WishListRepo repo = WishListRepo();
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     var baseUrl = 'https://www.elegancestores.online/admin/assets/imgs/products/';
     return Stack(
       children: [
@@ -45,7 +46,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
         ),
         Positioned(
           top: 8,
-          left: 150,
+          left: size.width*0.4,
           child: BlocConsumer<WishlistBloc, WishlistState>(
             listener: (context, state) {
               // TODO: implement listener
@@ -108,7 +109,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
         ),
         Positioned(
           left: 8,
-          top: 140,
+          top: size.height*0.155,
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(

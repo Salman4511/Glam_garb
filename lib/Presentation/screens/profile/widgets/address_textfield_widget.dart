@@ -18,17 +18,19 @@ class AdressTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: kwhite),
+      style: const TextStyle(color: kblackcolor),
       controller: controller,
       decoration: InputDecoration(
           labelText: name,
           labelStyle: const TextStyle(color: Colors.grey),
           enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: kwhite),
+              borderSide: const BorderSide(color: kblackcolor),
               borderRadius: BorderRadius.circular(15)),
           focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: kwhite),
-              borderRadius: BorderRadius.circular(15))),
+              borderSide: const BorderSide(color: kblackcolor),
+              borderRadius: BorderRadius.circular(15))
+           
+              ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return validationMessage;

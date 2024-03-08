@@ -32,9 +32,12 @@ class TopLevelWidget extends StatefulWidget {
 class _TopLevelWidgetState extends State<TopLevelWidget> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
-        kwidth45,
+        SizedBox(
+          width: size.width*0.08,
+        ),
         CircleAvatar(
           radius: widget.radius1,
           backgroundColor: widget.color1,

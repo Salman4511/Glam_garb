@@ -38,6 +38,7 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
   dynamic catDiscount;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     CheckOutRepo repo = CheckOutRepo();
     var baseUrl = 'http://10.0.2.2:3000/admin/assets/imgs/products/';
     return Scaffold(
@@ -201,18 +202,21 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           kheight,
-                                          Text(
-                                            checkOut.productsInCart![index]
-                                                    .productName ??
-                                                '',
-                                            style: const TextStyle(color: Colors.black,
-                                             fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Courier')
-                                              ,
+                                          SizedBox(
+                                            width: 200,
+                                            child: Text(
+                                              checkOut.productsInCart![index]
+                                                      .productName ??
+                                                  '',
+                                              style: const TextStyle(color: Colors.black,
+                                               fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Courier')
+                                                ,overflow: TextOverflow.ellipsis,
+                                            ),
                                           ),
                                           SizedBox(
-                                            width: 250,
+                                            width: 200,
                                             child: Text(
                                               
                                               '${checkOut.productsInCart![index].description}, ',
@@ -264,8 +268,8 @@ class _OrderSummaryScreenState extends State<OrderSummaryScreen> {
               ),
               Column(
                 children: [
-                  const SizedBox(
-                    height: 340,
+                   SizedBox(
+                    height: size.height*0.397,
                   ),
                   Container(
                     height: 60,

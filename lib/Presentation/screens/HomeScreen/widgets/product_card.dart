@@ -23,7 +23,7 @@ class ProductCard extends StatelessWidget {
                   fit: BoxFit.cover, image: NetworkImage(dummyimg))),
         ),
         const Positioned(
-          top: 8,
+          top: 8, 
           left: 150,
           child: Icon(
             Icons.favorite,

@@ -62,8 +62,10 @@ class _OTPScreenState extends State<OTPScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
+                          
                           widget.email,
                           style: TextStyle(color: kwhite, fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
                         ),
                         BlocConsumer<AuthBloc, AuthBlocState>(
                           listener: (context, state) {

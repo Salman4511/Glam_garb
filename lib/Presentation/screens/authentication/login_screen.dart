@@ -132,14 +132,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(top: 20),
                   child: BlocConsumer<AuthBloc, AuthBlocState>(
                     listener: (context, state) {
-                      if (state.loginUser != null) {
+                      
                         if (state.loginUser!.token != "") {
                           Navigator.pushReplacement(context, MaterialPageRoute(
                             builder: (context) {
                               return const navPage();
                             },
                           ));
-                        }
+                        
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

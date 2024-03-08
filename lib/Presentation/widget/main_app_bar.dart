@@ -18,6 +18,7 @@ class _Main_app_barState extends State<Main_app_bar> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
         // const Text('''Elevate Your Style,
@@ -26,7 +27,7 @@ class _Main_app_barState extends State<Main_app_bar> {
         //   color: kwhite,fontSize: 20,fontWeight: FontWeight.bold
         // ),),
         Container(
-          width: 80,
+          width: 60,
           height: 70,
           decoration: const BoxDecoration(
               image: DecorationImage(

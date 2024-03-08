@@ -37,13 +37,14 @@ class _CheckOutBottomButtonsWidgetState
     extends State<CheckOutBottomButtonsWidget> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
         kwidth,
         ElevatedButton(
           style:  ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(baseColor.shade400),
-            fixedSize: MaterialStatePropertyAll(Size(185, 50)),
+            fixedSize: MaterialStatePropertyAll(Size(160, 50)),
           ),
           onPressed: () {
             Navigator.push(
@@ -103,7 +104,7 @@ class _CheckOutBottomButtonsWidgetState
             return ElevatedButton(
               style:  ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(baseColor.shade900),
-                fixedSize: MaterialStatePropertyAll(Size(180, 50)),
+                fixedSize: MaterialStatePropertyAll(Size(160, 50)),
               ),
               onPressed: () {
                 context
