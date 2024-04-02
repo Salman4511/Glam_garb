@@ -66,6 +66,7 @@ class _WishListCardState extends State<WishListCard> {
                     // Product Description
                     Text(
                       widget.productDescription,
+                     
                       style: TextStyle(fontSize: 16,fontFamily: 'Courier'),
                       overflow: TextOverflow.ellipsis,
                       

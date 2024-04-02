@@ -152,8 +152,10 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                               width: 20,
                                             ),
                                             Text(
+                                              
                                               userData[0].address![index].name ??
                                                   '',
+                                                  overflow: TextOverflow.ellipsis,
                                               style: textstyle4,
                                             ),
                                           ],
@@ -166,6 +168,7 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                             ),
                                             Text(
                                               '${userData[0].address![index].housename}, ${userData[0].address![index].area!}, ${userData[0].address![index].city!}',
+                                            overflow: TextOverflow.ellipsis,
                                             ),
                                           ],
                                         ),
@@ -175,7 +178,9 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                               width: 20,
                                             ),
                                             Text(
-                                                '${userData[0].address![index].state} ${userData[0].address![index].pincode}'),
+                                                '${userData[0].address![index].state} ${userData[0].address![index].pincode}',
+                                                 overflow: TextOverflow.ellipsis,
+                                            ),
                                           ],
                                         ),
                                         Row(
@@ -184,7 +189,9 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                               width: 20,
                                             ),
                                             Text(
-                                                'Mobile: ${userData[0].address![index].mobile ?? 0}'),
+                                                'Mobile: ${userData[0].address![index].mobile ?? 0}',
+                                                 overflow: TextOverflow.ellipsis,
+                                            ),
                                           ],
                                         ),
                                         kheight
@@ -295,7 +302,9 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                                 ),
                                                 Text(
                                                   '${userData[0].address![index].housename}, ${userData[0].address![index].area!}, ${userData[0].address![index].city!}',
-                                                ),
+                                               
+                                                overflow:
+                                                      TextOverflow.ellipsis, ),
                                               ],
                                             ),
                                             Row(
@@ -304,7 +313,8 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                                   width: 20,
                                                 ),
                                                 Text(
-                                                    '${userData[0].address![index].state} ${userData[0].address![index].pincode}'),
+                                                    '${userData[0].address![index].state} ${userData[0].address![index].pincode}',
+                                                     overflow: TextOverflow.ellipsis,),
                                               ],
                                             ),
                                             Row(
@@ -313,7 +323,10 @@ class _CheckOutAddressScreenState extends State<CheckOutAddressScreen> {
                                                   width: 20,
                                                 ),
                                                 Text(
-                                                    'Mobile: ${userData[0].address![index].mobile}'),
+                                                    'Mobile: ${userData[0].address![index].mobile}',
+                                                     overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
                                               ],
                                             ),
                                             kheight
